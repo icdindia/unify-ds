@@ -1,0 +1,974 @@
+{
+  "_meta": {
+    "description": "Text style catalog probed from the DS source file (getLocalTextStylesAsync). lineHeight in px, letterSpacing in %. \"key\" is the library style key for setTextStyleIdAsync. Names match Figma verbatim.",
+    "source_file_key": "qT9zH1YYapGTwpJxwNEGzt",
+    "source": "Probed from Unify2026 DS source file 2026-06-25 via use_figma"
+  },
+  "fonts": {
+    "display": "Spectral",
+    "body": "Geist",
+    "code": "JetBrains Mono"
+  },
+  "styles": {
+    "Display 2xl/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 72,
+      "lineHeight": 90,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "fd9baff4d7353dc797ba9e5664b76d0a6d264baa"
+    },
+    "Display 2xl/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 72,
+      "lineHeight": 90,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "90575756fddde419e61401fb890430f02b810235"
+    },
+    "Display 2xl/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 72,
+      "lineHeight": 90,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "39f59586d7a648c1098673056f2bc4599aa0cfe1"
+    },
+    "Display 2xl/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 72,
+      "lineHeight": 90,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "2dd4d143cfd493acf036669e41a25236ea55428b"
+    },
+    "Display xl/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 60,
+      "lineHeight": 72,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "a977af307fbc3c3c7f0ce856809399ede8cd4500"
+    },
+    "Display xl/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 60,
+      "lineHeight": 72,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "fed082f4cdb8cc6c8706f8fb21716dd79b1e74e4"
+    },
+    "Display xl/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 60,
+      "lineHeight": 72,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "7c08d76eeaa5aa491c50543015e565e6a5017100"
+    },
+    "Display xl/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 60,
+      "lineHeight": 72,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "c13c2062623ee5fbfaa6ff154bcbe9d1c1884f73"
+    },
+    "Display lg/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 48,
+      "lineHeight": 60,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "a41d9ef3dda42c3f5bbaf5ed2d83e2d64edc4d4c"
+    },
+    "Display lg/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 48,
+      "lineHeight": 60,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "fa01bee5116900d3364c6fe9efae523a2899019f"
+    },
+    "Display lg/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 48,
+      "lineHeight": 60,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "4bb695b37966c9f9907799a7b6ca642bf7349fe5"
+    },
+    "Display lg/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 48,
+      "lineHeight": 60,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "39f168ab2326b23eabf61dc25e9e6afade793034"
+    },
+    "Display md/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 36,
+      "lineHeight": 44,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "c3c1d6175f25dff0f0e972f4e4b442ba2ddc0bf0"
+    },
+    "Display md/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 36,
+      "lineHeight": 44,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "7694bf073872ca983a6c8496df9984257300d7cc"
+    },
+    "Display md/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 36,
+      "lineHeight": 44,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "7b931c28330f19e8f51fd4b534658a09d8747731"
+    },
+    "Display md/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 36,
+      "lineHeight": 44,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "3f566601f9d3092d9c78266c1ead193bde8fd9af"
+    },
+    "Display sm/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 30,
+      "lineHeight": 38,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "5c1e10b81d88e5cb567266b4f698c4acd3fceebf"
+    },
+    "Display sm/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 30,
+      "lineHeight": 38,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "a35a046ac6c80505a8c1cd10353a52bef42c9d1d"
+    },
+    "Display sm/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 30,
+      "lineHeight": 38,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "02a40b06c651ac33889c701728708830558690c6"
+    },
+    "Display sm/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 30,
+      "lineHeight": 38,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "cd8dd9bdaca735c58b5b61d7d3820d72387def38"
+    },
+    "Display xs/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 24,
+      "lineHeight": 32,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "d7aab7d14809eb1abbf7f867ee0b31b2e7f17612"
+    },
+    "Display xs/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 24,
+      "lineHeight": 32,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "7e8e873daba5bffc112dc6381ba4d527b022a345"
+    },
+    "Display xs/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 24,
+      "lineHeight": 32,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "f7e8f9072aac0286e392d715230315cd500ed6a8"
+    },
+    "Display xs/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 24,
+      "lineHeight": 32,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "3d17aafaec49c63da7db1f3fbcfad361361e038b"
+    },
+    "Text xl/Regular": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 20,
+      "lineHeight": 26,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "32a30b91123c04f27973fc0d8aa5f408e404ba6e"
+    },
+    "Text xl/Medium": {
+      "family": "Spectral",
+      "weight": "Medium",
+      "size": 20,
+      "lineHeight": 26,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "6d5a027d454bea954ccceb9f0f67a1d6685e243e"
+    },
+    "Text xl/Semibold": {
+      "family": "Spectral",
+      "weight": "SemiBold",
+      "size": 20,
+      "lineHeight": 26,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "eb88d887a8129259116d27623662f39040234843"
+    },
+    "Text xl/Bold": {
+      "family": "Spectral",
+      "weight": "Bold",
+      "size": 20,
+      "lineHeight": 26,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "9b020040fc27fdab728741367f4941d0be4f0d7f"
+    },
+    "Text xl/Regular italic": {
+      "family": "Spectral",
+      "weight": "Italic",
+      "size": 20,
+      "lineHeight": 30,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "c1ae09503337d6daebd4a06adb228263edbfede5"
+    },
+    "Text xl/Medium italic": {
+      "family": "Spectral",
+      "weight": "Medium Italic",
+      "size": 20,
+      "lineHeight": 30,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "bece4e9832c07f4efe9dd0425e8c2a827a2f4b1d"
+    },
+    "Text xl/Semibold italic": {
+      "family": "Spectral",
+      "weight": "SemiBold Italic",
+      "size": 20,
+      "lineHeight": 30,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "9cac0aed30748a3124ad19ab5fa57eda7f250e08"
+    },
+    "Text xl/Bold italic": {
+      "family": "Spectral",
+      "weight": "Bold Italic",
+      "size": 20,
+      "lineHeight": 30,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "e33b314c3e0cb58e77cb0c54f4f559f503a3afb9"
+    },
+    "Text xl/Regular underlined": {
+      "family": "Spectral",
+      "weight": "Regular",
+      "size": 20,
+      "lineHeight": 30,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "e445e5d9d9c5f9695681efeb0b0a2cc27088ecc5"
+    },
+    "Text lg/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "d406b455a2042a2c67817a4619cac5f463a78a2c"
+    },
+    "Text lg/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "5901da3db2d67d52bf84039d7d10b71f2bdbf816"
+    },
+    "Text lg/Semibold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "94f02436fbca39485e4d93d00929b98665d606c2"
+    },
+    "Text lg/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "cffb42f2963a160a9f5156efffd1c3660db9d916"
+    },
+    "Text lg/Regular italic": {
+      "family": "Geist",
+      "weight": "Italic",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "c483b0904cf492c699862a2034a3d4ad90d97ad7"
+    },
+    "Text lg/Medium italic": {
+      "family": "Geist",
+      "weight": "Medium Italic",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "de87357cfc5d28eaa370210cccb61c4c1491bc78"
+    },
+    "Text lg/Semibold italic": {
+      "family": "Geist",
+      "weight": "SemiBold Italic",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "a1f224c1642636afef490513145b86bcf38a5624"
+    },
+    "Text lg/Bold italic": {
+      "family": "Geist",
+      "weight": "Bold Italic",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "67dc264e49579afba61c0f6298474e3982a85b93"
+    },
+    "Text md/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "39b424eb09349d666bf003304777a980cd1d8cf0"
+    },
+    "Text md/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "4d6be88580318bae7a21508be48d2858e2e4f95c"
+    },
+    "Text md/Semibold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "32f8b380e2b2ccd3e2faa53d42204fe02865890d"
+    },
+    "Text md/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "5fef0dbfdf483ba4d17d728fc47307ef13cd0445"
+    },
+    "Text md/Regular italic": {
+      "family": "Geist",
+      "weight": "Italic",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "7064894f64efca0871bb7540abdb741c164af73b"
+    },
+    "Text md/Medium italic": {
+      "family": "Geist",
+      "weight": "Medium Italic",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "ded018b302aec6a04b962867c4da350cd0bbece9"
+    },
+    "Text md/Semibold italic": {
+      "family": "Geist",
+      "weight": "SemiBold Italic",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "7c40b990ccd5fc2329035019a9cfef048091365c"
+    },
+    "Text md/Bold italic": {
+      "family": "Geist",
+      "weight": "Bold Italic",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "746c0576b0f871519136bbb1e05d6f9f9f60407b"
+    },
+    "Text sm/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "10353df580d0916c1595d5fd12c44b0630e4f271"
+    },
+    "Text sm/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "b7ce27231b679910c7ce94b157b802198b64b9f4"
+    },
+    "Text sm/Semibold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "1acc4a3df91b4219c29b2e5e6d6c76131defa57c"
+    },
+    "Text sm/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "0b484e449bcc8d00929ab59faffbf23597cb0120"
+    },
+    "Text sm/Regular underlined": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "d102ec5c800cbc5d0029d1bbfbb5bc5a58ffa85d"
+    },
+    "Text sm/Medium underlined": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "91a42b175a77a8bf5fa773b86380090eb6dbe317"
+    },
+    "Text sm/Semibold underlined": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "818ef0be2e3b897688a78ef9a7b20a96e757a9be"
+    },
+    "Text sm/Medium-Code": {
+      "family": "JetBrains Mono",
+      "weight": "Medium",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "58268316f040657185c533448a9b4c4d6def50af"
+    },
+    "Text sm/Bold-Code": {
+      "family": "JetBrains Mono",
+      "weight": "Bold",
+      "size": 13,
+      "lineHeight": 20,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "59ca22d73bd7669be39f841b6553172716fc237c"
+    },
+    "Text sm/Regular para": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 13,
+      "lineHeight": 22,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "5eab0a5c9ede17749e6a0e4c05a469253d6038de"
+    },
+    "Text sm/Medium para": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 13,
+      "lineHeight": 22,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "d229ad81fc607453af435f12d8f8fc8da4843bbd"
+    },
+    "Text sm/Semibold para": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 13,
+      "lineHeight": 22,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "beb7681b59afba7ca00b783e48490b902fde4edd"
+    },
+    "Text xs/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "799cbbea58aafdbb1697cacac37039b774876cb9"
+    },
+    "Text xs/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "eff9b819973293c5e4dee6efa8db823225fed860"
+    },
+    "Text xs/Semibold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "65b4d009f570d94889e4fc2912aed8b47dbb3825"
+    },
+    "Text xs/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "098a427297d2b81ae2fe6cd6185ce66eac59f4f2"
+    },
+    "Text xs/Regular-Code": {
+      "family": "JetBrains Mono",
+      "weight": "Regular",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "7f424d9ea076338b04b1b22cbb9998c3da091bb7"
+    },
+    "Text xs/Medium-Code": {
+      "family": "JetBrains Mono",
+      "weight": "Medium",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "8530b4ef46e43cf384a8ad650d513983985318f4"
+    },
+    "Text xs/Bold-Code": {
+      "family": "JetBrains Mono",
+      "weight": "Bold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "263bd9dd9afa60822a614984f17bc69bb4fb2a8b"
+    },
+    "Display xs/Medium italic": {
+      "family": "Spectral",
+      "weight": "Italic",
+      "size": 24,
+      "lineHeight": 36,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "1b42da7864e41226324ac68281cdfe8692d04841"
+    },
+    "Text lg/Regular underlined": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "43fcbb3ccc9e8c40c18b64fa04459c75452e5ada"
+    },
+    "Text lg/Medium underlined": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "89492abbf040e7d6812b7136193e35600e1245de"
+    },
+    "Text md/Regular underlined": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "dbd196cd7a13fd78693ecc64be20ec651fd7ca40"
+    },
+    "Text md/Medium underlined": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "ae7bb03d0613d881cc4806d68f70bfa19ae02909"
+    },
+    "Display sm/Medium italic": {
+      "family": "Spectral",
+      "weight": "Italic",
+      "size": 30,
+      "lineHeight": 44,
+      "letterSpacing": -2,
+      "case": "ORIGINAL",
+      "key": "16d29a6e659d0edf4403d2fabf92dac1c1e2746d"
+    },
+    "Text md/Semibold underlined": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 15,
+      "lineHeight": 24,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "e35b5d42f48d280e5562e56d4b73956b826bdde3"
+    },
+    "Text lg/Semibold underlined": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 17,
+      "lineHeight": 28,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "699af248384e378283524e4b046bd9fbdcec6aba"
+    },
+    "Text xxs/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "fbebeeb81d9c1dfd857319224b47f120f2f76e2d"
+    },
+    "Text xxs/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "a150b78525b14408b8e93da8448663b5909d30a7"
+    },
+    "Text xxs/Semi Bold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "c02b6768bec0940bc8d16837cdc234ae3ac6ed37"
+    },
+    "Text xxs/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "13c5338b2fb691af182a3566bda9718e44b78465"
+    },
+    "Text xxs/Regular-Underlined": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "eaecc5493799f750d8dcedfeff21e2aad2422356"
+    },
+    "Text xxs/Regular-Code": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "fb7022d33d6efeb83f6e8c989d018f4be3bbca5d"
+    },
+    "Text xxs/Medium-Code": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "cd18e0adaf6f779746315f638141df3f17fcacac"
+    },
+    "Text xxs/Bold-Code": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "bc3419bfc7d7e3f185bd6e3f246ee701c511a6a9"
+    },
+    "Text xxs/Medium-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "b6c25638f325d9d9c7350b5f3d25c22903d20976"
+    },
+    "Text xxs/Semibold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "582a9d1e992fff724ddf1281bc8082a293f39224"
+    },
+    "Text xxs/Bold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 11,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "96657951664790c0957253e7967e4b6736ac703e"
+    },
+    "Text xxxs/Regular": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "3f20d68f7fa25c630d5bbcff95e5e81ef5d467b1"
+    },
+    "Text xxxs/Medium": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "068bfbe6082dabcccdd4495c6eb87e1c338cb6bc"
+    },
+    "Text xxxs/Semi Bold": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "a31724f92f5ac83833d5fba33a465ec4f9f0f303"
+    },
+    "Text xxxs/Bold": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "5702bb75e1e745a74cb5b89203dfafe713ea3777"
+    },
+    "Text xxxs/Medium-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "efd50bf573724971b221a2c447dd0a9f1b827d2c"
+    },
+    "Text xxxs/Semibold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "ccd98bdaa89d2a7cf37b0cdc6cb7cb029d3991fc"
+    },
+    "Text xxxs/Bold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 10,
+      "lineHeight": 12,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "6e36e9ea9e4a68509c17b32a42591ba42234cb62"
+    },
+    "Text xs/Medium-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "68094e99d0c725bf099f05e0d2fdeb0b76e507af"
+    },
+    "Text xs/Semibold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "8ff853258959e58a401bf7fd6ef4b35d335b65d5"
+    },
+    "Text xs/Bold-ALL CAPS": {
+      "family": "Geist",
+      "weight": "Bold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 10,
+      "case": "UPPER",
+      "key": "60188866f6073c7659d58e2dc05515bff20d185f"
+    },
+    "Text xs/Regular-Underlined": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "46d6b23659fc9ca057c79452b94b0054b6511da6"
+    },
+    "Text xs/Medium-Underlined": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "795d7f183d2cbfd771df2103c4a981937b3126c8"
+    },
+    "Text xs/Semibold-Underlined": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "723f6e55a39423dccbe2ede4e3b1b226e34bb19d"
+    },
+    "Text xs/Regular para": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 12,
+      "lineHeight": 18,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "3515a357a3596d107374cdd75d11ce5b0636e1ae"
+    },
+    "Text xs/Medium para": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 12,
+      "lineHeight": 18,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "b02881033f4dda529c0db0aff37115549240f9c9"
+    },
+    "Text xs/Semibold para": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 12,
+      "lineHeight": 18,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "90159889673e8de2b3e10cd5e3a3e4c26f00dbb7"
+    },
+    "Text md/Regular para": {
+      "family": "Geist",
+      "weight": "Regular",
+      "size": 15,
+      "lineHeight": 26,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "54d45967d218eca682396dd7cdf35b6d5696a468"
+    },
+    "Text md/Medium para": {
+      "family": "Geist",
+      "weight": "Medium",
+      "size": 15,
+      "lineHeight": 26,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "d8d3dc5c5735efc3f18e5e049112c09afff0eabc"
+    },
+    "Text md/Semibold para": {
+      "family": "Geist",
+      "weight": "SemiBold",
+      "size": 15,
+      "lineHeight": 26,
+      "letterSpacing": 0,
+      "case": "ORIGINAL",
+      "key": "1033ea5d67c548ec1afef8fe0c7338c30aa99df2"
+    }
+  },
+  "aliases": {
+    "Button-xs": "Text xs/Semibold",
+    "Button-sm": "Text sm/Semibold",
+    "Button-md": "Text sm/Semibold",
+    "Button-lg": "Text md/Semibold"
+  }
+}

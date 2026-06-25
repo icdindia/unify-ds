@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "description": "Spacing variables — base scale (px) plus component entries. Aliases resolved to px.",
+    "source_file_key": "qT9zH1YYapGTwpJxwNEGzt",
+    "source": "Slimmed from Unify2026 combined Figma variable export (25 Jun) DTCG shape"
+  },
+  "Spacing": {
+    "Base": {
+      "spacing-none": 0,
+      "spacing-xxs": 2,
+      "spacing-xs": 4,
+      "spacing-sm": 6,
+      "spacing-md": 8,
+      "spacing-lg": 12,
+      "spacing-xl": 16,
+      "spacing-2xl": 20,
+      "spacing-3xl": 24,
+      "spacing-4xl": 32,
+      "spacing-5xl": 40,
+      "spacing-6xl": 48,
+      "spacing-7xl": 64,
+      "spacing-8xl": 80,
+      "spacing-9xl": 96,
+      "spacing-10xl": 128,
+      "spacing-11xl": 160
+    },
+    "Buttons": {
+      "xs": {
+        "left": 6,
+        "right": 6,
+        "top": 4,
+        "bottom": 4
+      },
+      "sm": {
+        "left": 8,
+        "right": 6,
+        "top": 6,
+        "bottom": 6
+      },
+      "md": {
+        "left-right": 12,
+        "right": 12,
+        "top": 8,
+        "bottom": 8
+      },
+      "lg": {
+        "left": 16,
+        "right": 16,
+        "top": 12,
+        "bottom": 12
+      }
+    },
+    "Input Menu Items": {
+      "md": {
+        "default": {
+          "right": 8,
+          "left": 8,
+          "top": 8,
+          "bottom": 8
+        },
+        "icon leading": {
+          "right": 8,
+          "left": 8,
+          "top": 8,
+          "bottom": 8
+        },
+        "avatar leading": {
+          "right": 8,
+          "left": 8,
+          "top": 6,
+          "bottom": 6
+        },
+        "dot leading": {
+          "right": 8,
+          "left": 8,
+          "top": 8,
+          "bottom": 8
+        },
+        "pill": {
+          "right": 8,
+          "left": 8,
+          "top": 6,
+          "bottom": 6
+        }
+      },
+      "sm": {
+        "default": {
+          "right": 8,
+          "left": 8,
+          "top": 6,
+          "bottom": 6
+        },
+        "icon leading": {
+          "right": 8,
+          "left": 8,
+          "top": 6,
+          "bottom": 6
+        },
+        "avatar leading": {
+          "right": 8,
+          "left": 8,
+          "top": 4,
+          "bottom": 4
+        },
+        "dot leading": {
+          "right": 8,
+          "left": 8,
+          "top": 6,
+          "bottom": 6
+        },
+        "pill": {
+          "right": 8,
+          "left": 8,
+          "top": 4,
+          "bottom": 4
+        }
+      }
+    }
+  }
+}
