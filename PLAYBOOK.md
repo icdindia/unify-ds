@@ -150,7 +150,17 @@ If a brief specifically requires a fixed shadow/blur/width token, ask before imp
 
 ## 10. Decision logging
 
-Judgment calls are flagged in chat at the moment they're made. No separate decision log file. If a decision is permanent enough to change defaults, update this playbook.
+Judgment calls are flagged in chat at the moment they're made. **Every valuable or durable
+decision is then logged so it is never re-derived or re-done** (user directive, 2026-06-25):
+
+- **Rule/standard** (affects how screens look or are built) → `ds/design-rules.md` (+ structural
+  detail in `ds/production-layout-spec.md`).
+- **Resolved conflict / one-off call / "don't relitigate" fact** → §16 audit trail below.
+- **Component / token / icon key** → `ds/figma-keys.md`; component role → `ds/components.md`.
+- **DS gap** (a component the DS lacks) → `ds/components.md` "confirmed absent" list, so we don't
+  re-probe for it.
+
+Cost of skipping this is re-probing the DS and re-deciding settled questions — don't skip.
 
 ---
 
@@ -214,3 +224,7 @@ Past conflicts and how they were resolved, kept for reference. Once a decision l
 - **"Spectral" (resolved):** Display family is **Spectral**, not "Spectral Sans" (typo in original rules doc, now corrected).
 - **Design skill (resolved):** `.claude/skills/design/SKILL.md` is the unified skill loading `ds/design-rules.md` + `principles/hci-laws.md`. Invoke `/design` before any Figma design task. The "Skill.md" reference in design-rules.md now points here.
 - **Dark/light mode (resolved):** `ds/tokens/semantic.json` is now the **full Figma export** of the semantic-variable collection (`_Primitives`), preserving the native shape with `Light mode` / `Dark mode` modes side by side. This **supersedes** the earlier handcrafted version that inferred dark aliases from convention — the real export revealed errors in the inference (e.g., `text-secondary` dark actually binds to the `Gray (dark mode alpha)` layer, not the raw ramp). The export is authoritative; do not hand-edit individual entries.
+- **Use whole DS components, don't reinvent molecular ones (resolved, 2026-06-25):** Standing user rule. Always use the ready-made DS component for a role (full sidebar, `Page Header`, `Form Header`, `Horizontal tabs`, `Button`, `Input`, `Textarea`, `Toggle`, `Tag`, `Empty State`). Only compose locally (per §5, with DS tokens) when the DS genuinely has no component for the role. Don't hand-assemble from atoms when a molecule exists.
+- **DS molecular gaps in Unify2026 (resolved, 2026-06-25):** confirmed ABSENT — card/section/panel container, file-attachment row, generic list row (icon+title+action), setting/toggle row, conversation-starter chip, page-level footer/action bar. Compose these locally; do **not** re-probe the DS looking for them. Full list + the closest atoms in `ds/components.md`.
+- **Warm style is canonical (resolved, 2026-06-25):** the Automations Preview warm redesign defines the house style — pill tabs (not underline), Spectral page titles, brand-olive (never purple), warm semantic status pills, semantic stat-tile colour, detail/preview header, Documentation rail anatomy. Bound in `ds/design-rules.md` §12 + `ds/production-layout-spec.md`. Holds for all new screens.
+- **Agent Builder restyle was a trial (resolved, 2026-06-25):** the `AI Agents / Agent Builder` frame (canvas `jcbxvaNrZCWeQsIiZRta6F`, node `106:57958`) was a proof of the workflow, not production. Its underline tabs are **not** to be retrofitted; pill tabs apply to new screens going forward. Card-title Spectral-vs-Geist left undecided (`Form Header` Geist stands for now).
