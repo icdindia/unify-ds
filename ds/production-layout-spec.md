@@ -4,8 +4,12 @@ Captures the structural pattern, component composition, and dimensions to match 
 team's redesigned reference screens. **This is the bar.** Match these patterns on every new
 screen unless a brief explicitly diverges.
 
-**Source**: Automations **Preview** page — warm redesign provided by the user 2026-06-25
-(old purple vs. new warm). This is the canonical "detail / preview page" reference.
+**Sources** (warm redesigns provided by the user 2026-06-25, old purple vs. new warm):
+1. Automations **Preview** page — canvas preview + Documentation rail.
+2. Applications **Overview** page — app preview + Details (metadata) rail.
+
+Together these define the canonical **object detail page** shell (Automations, Applications,
+Agents, Integrations all share it).
 
 ---
 
@@ -124,6 +128,62 @@ Refines `design-rules.md` §6. Order, top to bottom:
 | `Empty State` family | "No summary yet" panels | custom empty art |
 
 Captured component variant keys: `ds/figma-keys.md`.
+
+---
+
+## Object detail page — confirmed shell (Automations + Applications)
+
+Both refs share one shell; treat it as THE detail-page template:
+`breadcrumb → Spectral title (+ optional status pill / created-on meta) → pill tabs → [ main
+pane (fill, dotted canvas) | right rail (~440 fixed) ]`. The **right-cluster actions are
+object-specific** — Automations: Secondary "Open in builder" + Primary "Deploy"; Applications:
+Secondary "▷ Preview" + Primary "Open in Builder". Always Secondary(+icon) + Primary(olive) +
+`⋮` overflow, baseline-aligned with the title.
+
+The main pane shows a **live preview of the user's built artifact** (the automation flow, or the
+rendered app) floating on the dotted `bg-secondary` canvas — that inner content uses the product's
+own components and is not DS chrome to restyle.
+
+---
+
+## Details / metadata right-rail (Applications ref)
+
+A second rail flavour alongside the Documentation rail. `bg-primary` card, header = camera/info
+icon + "Details". Then label/value stacks, each: label `Text sm/Medium` `text-tertiary` over
+value, divided by 1px `border-secondary`:
+
+- **Application URL** — link (`text-brand`/underline) + copy icon button.
+- **Application ID** — **Code Pill / monospace** value.
+- **Base Device** — chip (`Desktop` + monitor icon, `border-secondary`, `radius-md`).
+- **Workspace** — plain value text.
+- **Tags** — label (+ optional `?` help) → tag pill(s), or "Select tags" placeholder when empty.
+- **Created on / Created by / Last modified by** — avatar + identity (name or email) +
+  timestamp (`text-tertiary`, e.g. "02 Jun 2025, 15:46").
+
+---
+
+## Stat cards (app preview + dashboards)
+
+Row of 3+ equal cards: `bg-primary`, `border-secondary`, `radius-lg`, padding `spacing-lg`.
+Each = **semantic icon badge** (left, rounded-square tinted bg: success/check, error/alert,
+warning/hand) + a stack of big value (`Display xs`/`Text xl`) with a **delta chip** beside it
+(`↑ 100%` `text-success` / `↓ 100%` `text-error`) over a title (`Text sm/Regular`
+`text-tertiary`). Distinct from the Documentation **stat tiles** (centered counters) — stat cards
+are left-aligned with an icon badge + trend.
+
+---
+
+## Data table
+
+Column header row (`Text sm/Medium` `text-tertiary`, `bg-secondary` or plain, 1px bottom border).
+Rows: 1px `border-secondary` separators, `spacing-lg` cell padding. Cell types seen:
+- **Identity cell** — avatar (initial circle) + name (`Text sm/Medium`).
+- **Status pill** — semantic colour map: `Design` → brand/violet utility; `Dev Backlog` →
+  `utility-warning` (amber); `Done` → success (green). Status is ALWAYS a pill (§5).
+- **Row action** — trailing "Edit" link (`text-brand`, `Text sm/Medium`).
+- **Error/attention text** — a cell in an error state renders its text in `text-error` (e.g. an
+  overdue task name in red).
+Toolbar above the table: filter / sort / overflow icon buttons (`Button` Tertiary icon-only).
 
 ---
 

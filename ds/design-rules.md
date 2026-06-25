@@ -197,5 +197,19 @@ structural study lives in `ds/production-layout-spec.md`; these are the binding 
   → stat tiles → eyebrow sections → Code Pills for resources → app chips → owner/meta rows →
   `Empty State` when empty). Supersedes the looser §6 docs template for these surfaces.
 
+- **Object detail pages share one shell** (confirmed on Automations + Applications): breadcrumb →
+  Spectral title → pill tabs → main pane (dotted-canvas preview) + right rail. Right-cluster
+  actions are object-specific but always Secondary(+icon) + Primary(olive) + `⋮`. Two rail
+  flavours: **Documentation** (stat tiles + sections) and **Details** (metadata: URL, mono ID,
+  device chip, tags, created/modified identity rows). See `production-layout-spec.md`.
+- **Status colour map (use everywhere status appears — pills, table cells):** success/Done →
+  `text-success`/green; warning/"Dev Backlog"/Undeployed → `utility-warning`/`utility-orange`
+  amber; info/"Design" → brand/violet utility; error/overdue → `text-error` (and error text in a
+  table cell goes red). Status is always a pill, never bare text.
+- **Stat cards vs stat tiles:** *stat cards* (app/dashboard) = left icon badge + value + trend
+  chip (`↑`/`↓`, green/red) + title; *stat tiles* (Documentation rail) = centered number + caps
+  label. Both colour the number/trend semantically.
+
 These hold "from now on" for all screens (user directive, 2026-06-25). When a DS component for a
-pattern is missing (stat tile, app chip), compose locally per PLAYBOOK §5 using DS tokens.
+pattern is missing (stat tile, stat card, app chip, data-table row), compose locally per
+PLAYBOOK §5 using DS tokens.
