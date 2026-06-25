@@ -221,3 +221,19 @@ structural study lives in `ds/production-layout-spec.md`; these are the binding 
 These hold "from now on" for all screens (user directive, 2026-06-25). When a DS component for a
 pattern is missing (stat tile, stat card, app chip, data-table row), compose locally per
 PLAYBOOK §5 using DS tokens.
+
+## 13. DS updates log (2026-06-25, latest)
+
+Latest changes pushed to the Unify2026 DS — apply on every new screen:
+
+- **17px text (`Text lg`) is now Spectral**, was Geist. Use Spectral for 17px; re-probe
+  `typography.json` for the affected `Text lg/*` styles (token re-stage won't catch per-style
+  family — needs a text-style re-probe).
+- **Page Header updated**: new internal spacing, a new text size, and a **built-in Toggle group**
+  inside the header (centre). On screens that don't need a header mode-switch, hide it (as on the
+  Applications detail page); on builders it carries the AI Assisted | Manual-type switch.
+- **Pill / Tag text is now `Text Medium`** (was Regular). Compose any local pills/badges with
+  Medium weight to match.
+
+Source: user, 2026-06-25. Re-probe Page Header + Tag + `Text lg` styles and re-stage tokens to
+fully sync `ds/figma-keys.md` / `typography.json`.
