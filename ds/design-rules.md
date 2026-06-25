@@ -170,3 +170,32 @@ All headers **must use DS components**. Never compose a heading from raw text + 
 ### Why this matters
 
 The breadcrumb-flush-to-top pattern is what makes the page feel rooted in the app shell instead of floating. The 12px gap between breadcrumb and header is tighter than §2's 64 top padding, because §2 assumes no breadcrumb to anchor the page identity.
+
+---
+
+## 12. Tabs, detail-page header & status patterns
+
+Adopted from the team's warm redesign of the **Automations Preview** page (2026-06-25). Full
+structural study lives in `ds/production-layout-spec.md`; these are the binding rules.
+
+- **Page tabs are PILL style, never underline.** Active tab = `bg-primary` pill + `border-secondary`
+  1px + `radius-md`, `text-primary`; inactive = plain `text-tertiary`, hover → `bg-secondary` pill.
+  Use the `Horizontal tabs` rounded/pill variant, not `Style=Default` (underline). The purple
+  underline treatment is retired.
+- **Detail / preview pages use the detail header** (not the form `Page Header`): breadcrumb →
+  Spectral `Display sm` object name + status pill → lifecycle meta row (Toggle + `V1` +
+  "Deployed …", dot-separated `text-tertiary`) → right cluster: Secondary "Open in builder" +
+  **Primary "Deploy"** (brand-olive) + `⋮` overflow.
+- **Status pills are warm + semantic.** "Undeployed Changes" → `utility-orange` outline pill;
+  Live → success dot; Draft → neutral. Pills, never bare text (reinforces §5).
+- **Stat tiles** (Steps / Passed / Failed counters): big number (`Display xs`) over caps label;
+  colour the number semantically — neutral total, `text-success` Passed, `text-error` Failed.
+- **Brand is olive, never purple.** Any purple CTA, active state, or accent from legacy screens
+  is converted to brand-olive on touch. (Reaffirms §1 — called out because the legacy app was
+  purple.)
+- **Documentation / side-panel rail** follows the anatomy in `production-layout-spec.md` (header
+  → stat tiles → eyebrow sections → Code Pills for resources → app chips → owner/meta rows →
+  `Empty State` when empty). Supersedes the looser §6 docs template for these surfaces.
+
+These hold "from now on" for all screens (user directive, 2026-06-25). When a DS component for a
+pattern is missing (stat tile, app chip), compose locally per PLAYBOOK §5 using DS tokens.
