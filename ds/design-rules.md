@@ -210,6 +210,14 @@ structural study lives in `ds/production-layout-spec.md`; these are the binding 
   chip (`↑`/`↓`, green/red) + title; *stat tiles* (Documentation rail) = centered number + caps
   label. Both colour the number/trend semantically.
 
+- **Builder config panes use FLAT titled sections, not cards** (Agent Builder ref): a builder's
+  left config pane is a flat stack of [Spectral section title + grey description + one input/
+  add-zone], separated by space — NOT the thematic cards of §4. **This scopes §4**: "group into
+  cards" applies to data-entry forms (connection setup, settings); builder config panes are
+  lighter, flat sections. **Dashed add-zones** (icon + "Add X" + ⊕) are the accepted empty
+  affordance for add-sections in builders — a scoped exception to §9 (they're functional inputs,
+  not decoration). Builders are typically **two-pane** (config | live preview with chat composer).
+
 These hold "from now on" for all screens (user directive, 2026-06-25). When a DS component for a
 pattern is missing (stat tile, stat card, app chip, data-table row), compose locally per
 PLAYBOOK §5 using DS tokens.

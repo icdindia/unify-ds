@@ -187,6 +187,35 @@ Toolbar above the table: filter / sort / overflow icon buttons (`Button` Tertiar
 
 ---
 
+## Reference 3 — Agent Builder ("Simple Agent") — two-pane builder
+
+The canonical agent-config screen (the one the trial restyle approximated — this is the bar).
+
+`breadcrumb → header [logo + Spectral title + created-on meta · CENTER segmented (AI Assisted |
+Manual configuration) · Run toggle + Save + ⋮] → pill tabs [Configuration | Deployments |
+Observability] → two panes (config | preview)`
+
+- **Header segmented control**: a 2-option toggle group (AI Assisted / Manual configuration),
+  active = `bg-primary` pill + border, sitting in the header **center**. Distinct from page tabs.
+- **Run** = green play **toggle** (not a button) + **Save** primary olive + `⋮` overflow.
+- **Left pane — "Create an Agent"** (Spectral pane title): a **FLAT stack of titled sections,
+  NOT cards.** Each section = Spectral section title + grey one-line description + a single
+  input/affordance, separated by generous space (no card chrome):
+  - Instructions → compact text input ("Add instructions to tailor the response") with an
+    expand-diagonal icon (opens full editor) — not a tall textarea.
+  - Knowledge sources → **dashed dropzone** (file icon + "(PDF, PPTX, DOCX and more)" + ⊕).
+  - Tools / Skills / Capabilities → **dashed add-zone** (icon + "Add X" + ⊕ on the right).
+  - Conversation Starters → "Add up to 3 prompts…".
+- **Right pane — "Preview"** (Spectral pane title): live chat preview. Centered agent empty
+  state = olive circle w/ spark icon + agent name (Spectral, "Sales Assistant") + grey tagline.
+  Bottom: **chat composer** ("＋ Ask anything…" + emoji / mic / waveform icons).
+- Panes split ~50/50 by a vertical hairline; left pane scrolls, composer pinned to preview bottom.
+
+> **Corrects the trial restyle** (single 720 column of cards + Add buttons). The real builder is
+> two-pane, flat titled sections, dashed add-zones, and a live preview.
+
+---
+
 ## What defines "warm" (purple → warm delta checklist)
 
 Apply ALL of these to bring any legacy purple screen into the system:
