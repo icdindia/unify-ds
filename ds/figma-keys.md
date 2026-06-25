@@ -171,3 +171,30 @@ From the `Lined Icons` sub-frame (`3463:407484`) on the Icons page, DS source fi
 | book-open-01 | `b8adad70911a511908e42c83a85a45d0f07c51a0` | `59626:4295` |
 
 > Substitutions (DS has no exact match): `message-chat-circle`→`message-chat-square`; `link-external-02`→`link-external-01`; `edit-02`→`edit-05` (the `edit` COMPONENT_SET `d7110875d047e7ff86104c5850075fb1368e6479` / node `60571:137842` may carry `edit-02` as a variant — sub-probe if exact needed).
+
+---
+
+## AI Agent Builder restyle — follow-up probe (2026-06-25)
+
+### Empty State — `Empty State`
+- **setKey**: `79590f4035a847d4b5c06f10318288e09556dd29` (component_set) · nodeId TBD (plugin API unavailable during probe)
+- Variant axis: unknown — sub-probe for variants when needed. Use `importComponentByKeyAsync("79590f4035a847d4b5c06f10318288e09556dd29")` for default.
+- Related: `Empty State - Button` setKey `d0e0d7bfb4d0e10145dddeea9820d2ae7deafd59` · `Empty State - Row` setKey `0279b96c743d6fa720eff815c66fdceefc8f5476` · `Empty State_Status` (singleton) setKey `b7d8ed5992357f3da3b5fd069b0e52c67efd47e1`
+
+### Chat Empty State — `Chat Empty State`
+- **setKey**: `0337e41908b5e2dab422dae690ac33f9eed341dd` (component_set)
+- Specifically for chat/conversation panel empty treatment.
+
+### File type icon (solid) — `File type icon/solid`
+- **setKey**: `e2b61408ffe83c477308dda35edec2cd97cef5a2` (component_set)
+- Use for file-format badge inside a custom-assembled file list row.
+
+### Input Menu Dropdown — `Input Menu Dropdown`
+- **setKey**: `6b0c7c2af450141e3aa2ef094dcb0fbe61594ae1` (component_set)
+- Closest DS list-row component. Intended as a dropdown item, not a general list row — see gaps note.
+
+### Table — `Table`
+- **setKey**: `64048af04a68983c637e24ffe7b49d206822d6d1` (component_set)
+- Full table component; no standalone "table row" sub-component exposed in the DS library search.
+
+> Gaps confirmed (2026-06-25 probe): No DS components found in Unify2026 for: Card/Section container, File attachment list item, Generic list item row (icon+title+trailing action), Setting toggle row, Conversation starter chip, Footer/action bar. These roles must be composed locally as plain styled frames using DS tokens (per PLAYBOOK §5).
