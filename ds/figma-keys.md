@@ -177,8 +177,9 @@ From the `Lined Icons` sub-frame (`3463:407484`) on the Icons page, DS source fi
 ## AI Agent Builder restyle — follow-up probe (2026-06-25)
 
 ### Empty State — `Empty State`
-- **setKey**: `79590f4035a847d4b5c06f10318288e09556dd29` (component_set) · nodeId TBD (plugin API unavailable during probe)
-- Variant axis: unknown — sub-probe for variants when needed. Use `importComponentByKeyAsync("79590f4035a847d4b5c06f10318288e09556dd29")` for default.
+- **setKey**: `79590f4035a847d4b5c06f10318288e09556dd29` · nodeId `34650:5767` (on Empty states page `1172:31`)
+- Variants: `Size=md, Type=Default` → `a64dfe53928905d3077dacaa16d4f5015402b8dc` ← centered empty panel (featured icon 40×40 + title + button); `Size=sm, Type=Default` → `dadbba21535441879a3715a9dabd22897ebbbddb`; `Size=md, Type=Descriptive` → `6debfd8594e40eead8265ccc2166b281ee34a327` (stepper with 3 items)
+- **Use `Size=md, Type=Default`** for "You haven't added any user yet" panel. Featured icon INSTANCE_SWAP prop at `data-name="Featured icon"`. Text nodes: `Create Your First Entity` (title), subtext node below. Button is an embedded `Buttons/Button Brand` instance.
 - Related: `Empty State - Button` setKey `d0e0d7bfb4d0e10145dddeea9820d2ae7deafd59` · `Empty State - Row` setKey `0279b96c743d6fa720eff815c66fdceefc8f5476` · `Empty State_Status` (singleton) setKey `b7d8ed5992357f3da3b5fd069b0e52c67efd47e1`
 
 ### Chat Empty State — `Chat Empty State`
@@ -198,3 +199,59 @@ From the `Lined Icons` sub-frame (`3463:407484`) on the Icons page, DS source fi
 - Full table component; no standalone "table row" sub-component exposed in the DS library search.
 
 > Gaps confirmed (2026-06-25 probe): No DS components found in Unify2026 for: Card/Section container, File attachment list item, Generic list item row (icon+title+trailing action), Setting toggle row, Conversation starter chip, Footer/action bar. These roles must be composed locally as plain styled frames using DS tokens (per PLAYBOOK §5).
+
+---
+
+## Governance / Settings page probe (2026-06-25)
+
+### Empty State - Button — `Empty State - Button`
+- **setKey**: `d0e0d7bfb4d0e10145dddeea9820d2ae7deafd59` · nodeId `34675:3431` · size 480×44 (md) / 480×36 (sm)
+- **CAUTION**: This is a dashed-border inline CTA row (not a full empty state panel). Use for table/list footer add-row triggers.
+- Variants: `Type=With CTA, State=Default` → `e91e5cd627058bd9ca36c7ae0a34f086e3128b20` ← use this; `Type=With CTA-sm, State=Default` → `0c67519f39463405ed5ad691d253951b13a09c41`; `State=Hover` → `f30484bc7469fe83661b0dc91ac82e4294c44d02`; `State=Focus` → `705ad9e0ea7fd81b7a443cccafbdb4dacb48d82c`; `State=Disabled` → `425d529d42d2d1a04be23e6bf0cfdc564784c130`
+- Text nodes: icon `plus` (INSTANCE_SWAP at `35791:5542`); label `p` node `Button CTA` (Text sm/Regular); optional trailing `chevron-down` icon wrapped in `Icon Wrap` (boolean `dropdown` prop, default true — set false for simple triggers).
+- No "Featured icon" swap, no "Title"/"Supporting text" — those belong to the `Empty State` base component.
+
+### Toggle group (Pill page tabs / segmented control) — `Toggle group`
+- **setKey**: `6267fc6886d9519de3bae1f4a1364dc44068428b` · nodeId `15359:31718`
+- **Correct component for "Overview | Versions | Localization | Walkthroughs | Settings" page tabs.** Track has `bg-secondary` (#f7f5f3) + rounded pill. Active item has `bg-primary` (white) + shadow-sm. Inactive items plain text on track.
+- Variants used by this brief:
+  - `Type=Neutral, Style=Text, Size=sm` → `10e7dd174abf6b9d35915a2996c92aa0c59c3f33` ← 5-tab page switcher
+  - `Type=Neutral, Style=Text, Size=md` → `91c5e9bc155499e20262bb63507d08ef5ee84bdb`
+  - `Type=Brand, Style=Text, Size=sm` → `4b529b980af8f43c73ee0e087ce502c24793a9d6` (brand accent active)
+- Props/slots: VARIANT `Type` {Neutral|Brand|Inset} · `Style` {Text|Icon with text|Icon only} · `Size` {xs|sm|md|lg|xl}. Active item set via `_Toggle group base` sub-component (Current=True). Each item's text node named `Text`.
+- Sub-component: `_Toggle group base` setKey `a96ba19fb0a0938c258e9d514833d1c0dc9b76a6` · nodeId `15359:31027` (216 variants). Key states: `Type=Neutral, Size=sm, Current=True, Icon=False, State=Default` → `01f11dfe72413e4f4d61964c926eb7fa7945eab5`; `Current=False` → `286148872a48acacd21f90fc19fdff0e424d00c7`.
+
+### Horizontal tabs — `Button Tab base` sub-component (alternative tab atom)
+- **setKey**: `3a9fe403a4beffc621a7a49be482b19106a35c6e` · nodeId `61409:50768`
+- Sub-component of `Horizontal tabs, Style=Button Tabs`. Each tab is a `rounded-sm` pill, `bg-primary` + border for active, `bg-tertiary` for inactive (no track wrapper — items float independently).
+- Key variants: `State=Default, Current=Yes, Size=sm` → `9a75cda6d678982190261c7ffc656f02c1c6a5aa`; `State=Default, Current=No, Size=sm` → `6c4caadc160b5351ec3ab4d85a4ab29e5d06bd10`
+- Text node inside: `p` child (Text xs/Medium). No `Add New Icon` boolean on Button Tabs style.
+
+### Button group — `Button group`
+- **setKey**: `3bddb5134aaf0614782db73d392ca5e57dc5dbbb` · nodeId `1046:10171` (12 variants) — also noted for reference.
+
+### List Item (checkbox/radio variant) — `List Item`
+- **setKey**: `08002cf14b8f0807ae9b5b0a5e8b7f0b7c65f53b` · nodeId `34509:23675`
+- Variants: Type {Radio button|Checkbox|Icon simple} × Size {sm|md} × Selected {True|False} × State. NOT a settings-row pattern. Use for selection lists only.
+
+### Icons — new keys captured (Lined set, frame `59626:3533`, Icons page `3463:407484`)
+
+| Icon name | Key | Node ID |
+|---|---|---|
+| user-plus-01 | `5e6a822485f557939270bcc07aa37da88423b96d` | `59626:6437` |
+| user-square | `2a7d61fa193aada21566642942b0d66d957a6b44` | `59626:6453` |
+| users-01 | `cc45c6581458532269e670932dba2f2cc3b69e01` | `59626:6473` |
+| shield-tick | `8a4389e61d58904c90a3612c9cadb099f125c063` | `59626:4220` |
+| shield-01 | `3375996c8a50c66058d312ce6aa716d8c27b9c7e` | `59626:4228` |
+| shield-02 | `99a0bedb98df5a9de2c36f009957ea5dd764d76a` | `59626:4232` |
+| lock-01 | `e8e437ab16ff268bb6503e930ba5424fb132fc04` | `59626:4152` |
+| lock-02 | `708ccf7fcf824f8d8de09b4d4bc49d67765c3099` | `59626:4156` |
+| chevron-down | `ba9d16a5fecb946b07fb8968b71f6966d54f9324` | `59626:4693` |
+| chevron-right | `1534a28d83aa9fbaa2e4a9b96f8c383764684fb6` | `59626:4757` |
+| chevron-left | `e2d7fd671653e9d633066e8f3d8a4b9f4c93b32e` | `59626:4725` |
+| chevron-up | `3d4d7390892a39fa1fa708f4bb0a0968a3ee655a` | `59626:4829` |
+| users-plus | `875043dc0f3bf522aaafc8627b1b9737ba7e8274` | `59626:6497` |
+| user-check-01 | `be0d18c4e5e86a01a2dc780ca62f8f187e0a66fa` | `59626:6393` |
+| user-x-01 | `26667cfbffb568da337c0bb27295ebdad38d9b0d` | `59626:6465` |
+
+> Icon substitutions for this build: `user-circle` → use `user-square` (exact match unavailable); `address-book` → use `user-square` (none in DS); `id` → use `user-square` (none in DS); `person-badge` → use `user-square` (none in DS); `user-plus` (without -01) → use `user-plus-01`; `security/person-badge icon for Governance` → use `user-square`; `doc-lock icon for Security` → use `lock-01` or `shield-01`.

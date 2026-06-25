@@ -81,3 +81,16 @@ Lined icons used so far are keyed in `ds/figma-keys.md` → Icon component keys.
 - Setting toggle row (title + description + Toggle)
 - Conversation starter chip / prompt pill
 - Footer / action bar (page-level bottom bar with Save/Cancel)
+- Settings vertical / side navigation (expandable section nav with parent+children, chevron, active state) — NO DS component. Compose locally.
+- Governance section row (tinted icon square + title + count badge + subtitle) — NO DS component. Compose locally.
+
+## Governance / Settings page (2026-06-25)
+
+| Component set | setKey | Variant axes | Role | Used for |
+|---|---|---|---|---|
+| `Toggle group` | `6267fc6886d9519de3bae1f4a1364dc44068428b` | Type · Style · Size | core | Page-level pill tab switcher (Overview\|Versions\|…\|Settings) |
+| `_Toggle group base` | `a96ba19fb0a0938c258e9d514833d1c0dc9b76a6` | Type · Size · Current · Icon · State | composable | Individual tab item inside Toggle group |
+| `Button Tab base` | `3a9fe403a4beffc621a7a49be482b19106a35c6e` | State · Current · Size · Error | composable | Individual tab atom inside Horizontal tabs Button Tabs style |
+| `Empty State - Button` | `d0e0d7bfb4d0e10145dddeea9820d2ae7deafd59` | Type · State | composable | Inline dashed CTA row (table add-row footer trigger) |
+| `List Item` | `08002cf14b8f0807ae9b5b0a5e8b7f0b7c65f53b` | Type · Size · Selected · State | composable | Selectable list rows (checkbox/radio/icon) — NOT settings row |
+| `Button group` | `3bddb5134aaf0614782db73d392ca5e57dc5dbbb` | — | composable | Button group container (12 variants) |
