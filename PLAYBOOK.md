@@ -185,7 +185,28 @@ These laws are floors, not aesthetics. They're the minimum bar; brand voice and 
 
 ---
 
-## 15. Resolved decisions (audit trail)
+## 15. Sub-agents (workflow delegation)
+
+Three specialized sub-agents live in `.claude/agents/`. They exist to keep heavy payloads out of
+the main thread and to run verification in a fresh context. Delegate to them at these points —
+don't inline the work they own.
+
+| Agent | When to delegate | Why |
+|---|---|---|
+| **brief-intake** | Start of a task, before any building | Converts a messy brief (screenshots / Figma links / prose) into a structured spec: screens, states, components needed, real copy, and the §9 open questions. Read-only. |
+| **figma-prober** | After intake, before the `use_figma` build pass | Probes ONLY the brief-named components in the DS source file, returns distilled keys/variants/dims, and updates `ds/components.md` + `ds/figma-keys.md`. Keeps multi-KB MCP payloads out of main context. Read-only (read-back `use_figma` probes only). |
+| **design-qa** | After a build, before surfacing to the user | Audits the frame against §6 + `design-rules.md` + `hci-laws.md`, returns a PASS/FAIL checklist with evidence. Fresh-context verification gate. Read-only — it reports, it doesn't fix. |
+
+Flow: **brief-intake → figma-prober → build (`/design` + `use_figma`) → design-qa → `/design-critic` self-critique loop → handoff.**
+
+`design-qa` is the objective bar check (tokens, widths, instances, contrast); `/design-critic`
+(skill, §11/§14) is the subjective taste pass. Run QA first to clear the concrete violations, then
+the critic for hierarchy/judgment. The agents are read-only or manifest-only writers — actual
+Figma builds and fixes stay with the main agent.
+
+---
+
+## 16. Resolved decisions (audit trail)
 
 Past conflicts and how they were resolved, kept for reference. Once a decision lands here, it's authoritative — don't relitigate.
 
