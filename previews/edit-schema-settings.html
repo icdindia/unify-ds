@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Schema — Settings · UnifyApps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Unify2026 DS tokens */
+    --bg-primary:#ffffff; --bg-secondary:#f7f5f3; --bg-tertiary:#f2f0ee;
+    --bg-brand-solid:#112d06; --bg-brand-secondary:#f9f6f1;
+    --border-secondary:#edebe8; --border-primary:#dbd6d1;
+    --text-primary:#201f1e; --text-secondary:#4a4745; --text-tertiary:#6a6662; --text-quaternary:#9f9993;
+    --brand-50:#e9efe8;
+    --sp-xs:4px; --sp-sm:6px; --sp-md:8px; --sp-lg:12px; --sp-xl:16px; --sp-2xl:20px; --sp-3xl:24px; --sp-4xl:32px;
+    --r-sm:6px; --r-md:8px; --r-lg:8px; --r-3xl:10px; --r-4xl:12px;
+    --display:'Spectral',Georgia,serif; --body:'Geist','Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--body);background:var(--bg-secondary);color:var(--text-primary);-webkit-font-smoothing:antialiased;}
+  .page{max-width:1440px;margin:0 auto;padding:16px 32px 32px;display:flex;flex-direction:column;gap:12px;min-height:100vh;}
+
+  /* breadcrumb */
+  .crumb{font-size:13px;font-weight:500;color:var(--text-tertiary);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .crumb .sep{color:var(--text-quaternary);}
+  .crumb .cur{color:var(--text-secondary);}
+
+  /* title */
+  .title{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-.01em;}
+  .subtitle{font-size:13px;color:var(--text-tertiary);margin-top:4px;}
+
+  /* tabs */
+  .tabs{display:inline-flex;gap:4px;background:var(--bg-tertiary);border-radius:var(--r-md);padding:4px;width:fit-content;}
+  .tab{font-size:13px;font-weight:500;color:var(--text-tertiary);padding:6px 14px;border-radius:var(--r-sm);cursor:pointer;border:1px solid transparent;}
+  .tab.active{background:var(--bg-primary);color:var(--text-primary);border-color:var(--border-secondary);box-shadow:0 1px 2px rgba(33,31,30,.06);}
+
+  /* card */
+  .card{background:var(--bg-primary);border:1px solid var(--border-secondary);border-radius:var(--r-4xl);flex:1;display:flex;flex-direction:column;overflow:hidden;}
+  .card-body{flex:1;overflow:auto;padding:32px;display:flex;justify-content:center;}
+  .col{width:100%;max-width:960px;display:flex;flex-direction:column;gap:36px;}
+  .col > h1{font-family:var(--display);font-size:22px;font-weight:500;}
+
+  /* section */
+  .section{display:flex;flex-direction:column;gap:16px;}
+  .sec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+  .sec-head h2{font-size:15px;font-weight:600;color:var(--text-primary);}
+  .sec-head p{font-size:13px;color:var(--text-tertiary);margin-top:4px;}
+
+  /* generic bordered block */
+  .block{border:1px solid var(--border-secondary);border-radius:var(--r-lg);background:var(--bg-primary);}
+  .pad{padding:16px;}
+
+  /* key-value row */
+  .kv{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .kv .k{font-size:13px;font-weight:500;}
+  .kv .ks{font-size:13px;color:var(--text-tertiary);margin-top:4px;}
+
+  /* select (dropdown) */
+  .select{width:300px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border:1px solid var(--border-primary);border-radius:var(--r-md);background:var(--bg-primary);
+    padding:9px 12px;font-size:13px;color:var(--text-primary);cursor:pointer;}
+  .select svg{color:var(--text-tertiary);flex:none;}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:500;
+    border-radius:var(--r-md);padding:8px 14px;cursor:pointer;border:1px solid transparent;line-height:1;}
+  .btn-secondary{background:var(--bg-primary);border-color:var(--border-primary);color:var(--text-secondary);}
+  .btn-secondary:hover{background:var(--bg-secondary);}
+  .btn-primary{background:var(--bg-brand-solid);color:#fff;}
+  .btn-primary:hover{filter:brightness(1.15);}
+  .btn svg{flex:none;}
+
+  /* info note */
+  .note{display:flex;gap:12px;background:var(--bg-secondary);border:1px solid var(--border-secondary);border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:var(--text-secondary);line-height:1.5;}
+  .note .ico{flex:none;width:20px;height:20px;border-radius:50%;background:var(--bg-tertiary);display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);margin-top:1px;}
+
+  /* custom indices */
+  .ci-head{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;color:var(--text-primary);cursor:pointer;}
+  .ci-head svg{color:var(--text-tertiary);}
+  .add-zone{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--border-primary);border-radius:var(--r-md);
+    padding:14px;font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer;}
+  .add-zone:hover{background:var(--bg-secondary);}
+
+  /* toggle rows */
+  .rows .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;border-bottom:1px solid var(--border-secondary);}
+  .rows .row:last-child{border-bottom:none;}
+  .row .t{font-size:13px;font-weight:500;}
+  .row .d{font-size:13px;color:var(--text-tertiary);margin-top:4px;}
+  .toggle{width:36px;height:20px;border-radius:999px;background:var(--border-primary);position:relative;flex:none;cursor:pointer;transition:background .15s;}
+  .toggle::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(33,31,30,.2);transition:left .15s;}
+  .toggle.on{background:var(--bg-brand-solid);}
+  .toggle.on::after{left:18px;}
+
+  /* footer */
+  .footer{display:flex;justify-content:flex-end;gap:8px;padding:16px 32px;border-top:1px solid var(--border-secondary);background:var(--bg-primary);}
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- breadcrumb -->
+    <div class="crumb">
+      <span>Objects</span><span class="sep">/</span>
+      <span>e_6a3d1eeebb02051f8c6e920b_csv_file_4.csv</span><span class="sep">/</span>
+      <span class="cur">Edit Schema</span>
+    </div>
+
+    <!-- title -->
+    <div>
+      <div class="title">e_6a3d1eeebb02051f8c6e920b_csv_file_4.csv</div>
+      <div class="subtitle">Created automatically when importing file to monitor data quality</div>
+    </div>
+
+    <!-- tabs -->
+    <div class="tabs">
+      <div class="tab">Schema</div>
+      <div class="tab active">Settings</div>
+    </div>
+
+    <!-- settings card -->
+    <div class="card">
+      <div class="card-body">
+        <div class="col">
+          <h1>Settings</h1>
+
+          <!-- Data Management -->
+          <div class="section">
+            <div class="sec-head"><div><h2>Data Management</h2><p>Configure how object data is stored, accessed, and retained</p></div></div>
+            <div class="block pad kv">
+              <div><div class="k">Object Data Storage</div><div class="ks">Object data is stored in the storage</div></div>
+              <div class="select">Analytics Store
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Object Indices -->
+          <div class="section">
+            <div class="sec-head">
+              <div><h2>Object Indices</h2><p>Configure object indexes to optimize query and data retrieval performance</p></div>
+              <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Index
+              </button>
+            </div>
+            <div class="block pad" style="display:flex;flex-direction:column;gap:20px;">
+              <div class="note">
+                <span class="ico">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                </span>
+                <span>Fields marked as Primary Key or Unique key are automatically indexed for optimal performance. You can create additional custom indices below to further optimize your queries.</span>
+              </div>
+              <div class="ci-head">Custom Indices
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              </div>
+              <div class="add-zone">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Custom Index
+              </div>
+            </div>
+          </div>
+
+          <!-- Monitoring & Logging -->
+          <div class="section">
+            <div class="sec-head"><div><h2>Monitoring &amp; Logging</h2><p>Control how system events, user actions, and changes to this object are tracked and recorded</p></div></div>
+            <div class="block rows">
+              <div class="row"><div><div class="t">Enable Audit Trail</div><div class="d">If enabled, audit logs will capture activity for the object</div></div><div class="toggle"></div></div>
+              <div class="row"><div><div class="t">Enable Activity Tracking</div><div class="d">If enabled, the object's activity will be captured in records</div></div><div class="toggle"></div></div>
+              <div class="row"><div><div class="t">Enable Reporting</div><div class="d">Reporting functionality will be enabled for the object</div></div><div class="toggle"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- footer -->
+      <div class="footer">
+        <button class="btn btn-secondary">Discard Changes</button>
+        <button class="btn btn-primary">Save</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.toggle').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('on')));
+    document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');}));
+  </script>
+</body>
+</html>
