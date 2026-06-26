@@ -185,6 +185,31 @@ Rows: 1px `border-secondary` separators, `spacing-lg` cell padding. Cell types s
   overdue task name in red).
 Toolbar above the table: filter / sort / overflow icon buttons (`Button` Tertiary icon-only).
 
+### Dev-ready capability matrix (Edit Schema, confirmed by user 2026-06-26)
+
+When a table is a **field × capability matrix** (e.g. schema fields × Search/Sort/Filter/Optional),
+the dev-ready treatment is:
+- **Full vertical column dividers** between every column (Fields │ Search │ Sort │ Filter │
+  Optional) — `border-left` 1px `border-secondary` on each capability column, header + cells. Reads
+  as a true grid, not a loose list.
+- **Capability cells = real checkboxes** (square ~18px, `brand-solid` fill + white check on, empty
+  outline off). Not dashed circles/status dots. Column header label is **click-to-toggle-all**.
+- **Sticky header row + sticky footer** (Save). Row height ~52–53px.
+- **Clean white nested rows** — hierarchy via chevron + indent only; **no zebra shading**, no
+  connector lines.
+- **Type tags**: 22px rounded-square, mono glyph + soft tint. Map: string `A`→success-green,
+  number `#`→orange, **object `{}`→neutral grey** (not blue), array `[]`→violet. Functional
+  preattentive coding — the one sanctioned place for multi-colour (like syntax highlighting).
+- **No decorative hover affordances** in dev-ready (no hover-only drag handles / kebabs unless the
+  action is real). Toolbar: **search collapses to an icon**, not a persistent field.
+- Card title is the action ("Edit Schema") + count badge ("15 fields") + one-line helper that
+  explains the columns once (beats per-column `?` hover — Recognition over recall).
+
+> Lesson logged: HTML/code mockups must use **exact DS spec** (type px, control dims, padding
+> tokens), not eyeballed web-sizes — they ran a tier large until bound to the scale (body 13,
+> Toggle sm 36×20, button md ~32, card padding 16, section gap 24). See `ds/tokens/` + the type
+> scale in `typography.json`.
+
 ---
 
 ## Reference 3 — Agent Builder ("Simple Agent") — two-pane builder
