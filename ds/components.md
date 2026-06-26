@@ -1,12 +1,15 @@
-# Component Manifest — _TBD_
+# Component Manifest — Unify2026
 
-Lookup index for components I can reference without parsing the full DS. Populated as the user shares Figma component links, and as I create local components for repetition.
+Lookup index for components I can reference without parsing the full DS. The **full catalog** (every
+component set with set key, default-variant key, and variant axes) lives in `ds/ds-inventory.md` —
+check that first. This file holds the role index + override handles for components actually used in
+builds, plus the local-composition decisions.
 
 **This is not a copy of the DS.** It's a pointer table: enough metadata to locate, identify role, and use correctly. For exact pixel-level structure, fetch the specific component via `get_design_context` only when implementing.
 
 All entries below are **core** unless marked otherwise — they must be used as instances of the source component, no detaching, no override outside exposed variants.
 
-DS file key: _TBD_ (see `ds/config.md`)
+DS source file key: `qT9zH1YYapGTwpJxwNEGzt` (see `ds/config.md`)
 
 ---
 

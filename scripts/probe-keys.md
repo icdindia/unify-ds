@@ -8,6 +8,61 @@ This doc gives you the **ready-to-paste probe scripts** in the order to run them
 
 ---
 
+## Already swept — read the cache first
+
+A **full library sweep** ran 2026-06-26. Before probing anything, check:
+- **`ds/ds-inventory.md`** — every component set on the SHARED + APPLICATION pages, with set key,
+  default-variant key, and variant axes. This is the master catalog.
+- **`ds/tokens/figma-var-keys.json`** — hot-path color/spacing/radius variable keys.
+- **`ds/tokens/typography.json`** — text-style keys.
+
+Only run the probes below when the cache is missing a component/variant/icon you need, or after a
+major DS republish. The steps below are the maintenance recipe; the fast bulk recipe is Step 0.
+
+> **Timeout rule**: never `setCurrentPageAsync` on big DS pages — it loads the whole page and times
+> out (60s). Use `page.loadAsync()` (shallow), `get_metadata` (read tool), or `getNodeByIdAsync`
+> (keys, no page switch). This is what makes the fast sweep below reliable.
+
+---
+
+## Step 0 — Fast full sweep (timeout-safe, ~3 batched calls)
+
+Re-generates `ds/ds-inventory.md`. For a batch of pages, distill every component set without
+switching pages. Run in 3–4 calls (≤10 pages each) to stay under the limit; wrap the axes read in
+try/catch (some sets carry internal errors and throw on `componentPropertyDefinitions`).
+
+```js
+// fileKey: <DS source file key>
+figma.skipInvisibleInstanceChildren = true;
+const pages = { 'Buttons':'1:1183', 'Inputs':'85:1269', /* ...page name:id... */ };
+function axesOf(cs){ try{ const d=cs.componentPropertyDefinitions||{}; const o={};
+  for(const k in d){ o[k.replace(/#.*/,'')] = d[k].variantOptions || d[k].type; } return o;
+}catch(e){ return '(set has errors)'; } }
+function rowFor(n){
+  if(n.type==='COMPONENT_SET'){ let dv=null; try{dv=n.defaultVariant;}catch(e){}
+    if(!dv) dv=n.children.find(c=>c.type==='COMPONENT');
+    return { name:n.name, setKey:n.key, defKey:dv?dv.key:null, axes:axesOf(n) }; }
+  if(n.type==='COMPONENT' && n.parent.type!=='COMPONENT_SET') return { name:n.name, compKey:n.key };
+  return null;
+}
+const out={};
+for(const [nm,pid] of Object.entries(pages)){
+  const page=await figma.getNodeByIdAsync(pid); await page.loadAsync();
+  const rows=[];
+  for(const ch of page.children){
+    const r=rowFor(ch); if(r){ rows.push(r); continue; }
+    if(ch.type==='FRAME'||ch.type==='SECTION'){ for(const cc of ch.children){ const rr=rowFor(cc); if(rr) rows.push(rr); } }
+  }
+  out[nm]=rows;
+}
+return out;
+```
+
+Get the page id→name map from Step 1. Instantiate any captured set via
+`importComponentByKeyAsync(defKey)` then `setProperties({...})`.
+
+---
+
 ## Step 1 — List DS pages
 
 Find the top-level pages and their child counts. Most components live as direct children of a page. Use this list to scope subsequent probes.

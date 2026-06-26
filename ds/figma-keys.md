@@ -19,11 +19,31 @@ Recommended capture order:
 
 ---
 
-## DS page index (fill from Step 1 of probe-keys.md)
+## DS page index
 
-| Page | ID | Components / styles housed |
+Full sweep captured 2026-06-26 → see **`ds/ds-inventory.md`** for the complete catalog (every set,
+keys, variant axes). Key page IDs:
+
+| Page | ID | Houses |
 |---|---|---|
-| _TBD — run Step 1 of probe-keys.md on first build_ | _TBD_ | _TBD_ |
+| FOUNDATIONS ↳ Colors | `1023:36350` | color styles/variables |
+| FOUNDATIONS ↳ Typography | `18:1951` | text styles |
+| FOUNDATIONS ↳ Icons | `3463:407484` | Lined/Solid icon components |
+| SHARED ↳ Buttons | `1:1183` | Button Brand/Neutral/Error/Success/AI/Link, Small Icon Button |
+| SHARED ↳ Inputs | `85:1269` | Input/Textarea fields, Key Value rows, Label |
+| SHARED ↳ Dropdowns | `18:0` | Input dropdowns, menu items, list item/header/footer |
+| SHARED ↳ Button+Toggle groups | `16:399` | Toggle group, Button group |
+| SHARED ↳ Pill / Tags | `12:539` / `3306:403749` | Tag, Pill rounded/squared/solid, Code Pill |
+| SHARED ↳ Avatars / List Item cards | `13931:29731` / `122:3484` | Avatar family, List Item / Cardified |
+| SHARED ↳ Checkboxes / Toggles | `1097:63638` / `1102:4631` | Checkbox, Toggle, Text Toggle |
+| APPLICATION ↳ Headers | `190:4871` | Page/Form/Section/Sidepane headers, Filter Bar, builder bars |
+| APPLICATION ↳ Side Panel | `9501:2358` | Side Panel header + body (Key Value / Table) |
+| APPLICATION ↳ Modals | `172:4293` | Modal Unit/header/actions, Popover, Docs |
+| APPLICATION ↳ Section footers | `3275:371793` | Section footer, Side panel footer, Builder Footer |
+| APPLICATION ↳ Tabs / Tables | `43:0` / `214:0` | Horizontal/Vertical tabs; Table, Table cell, Col header |
+| APPLICATION ↳ Code snippets | `1221:106300` | Code snippet (JSON/code viewer) |
+| APPLICATION ↳ Navigation | `82:1862` | Sidebar/Header/Bottom nav families |
+| APPLICATION ↳ Alerts / Empty states / File upload | `176:4256` / `1172:31` / `1157:90306` | Alert, Notification, Empty State, File upload |
 
 ---
 
