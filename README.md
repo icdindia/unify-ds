@@ -1,86 +1,93 @@
-# Design Workflow Admin — Template
+# UnifyApps Design Workflow
 
-This repo is the **admin / control plane** for an AI-driven design workflow. The actual design artifacts live in Figma; this repo holds the system that makes the workflow run — operating instructions, local token mirror, component manifest, brief template, and DS-specific configuration.
+This repo lets **Claude (an AI) design real screens in Figma** for us — using our own design
+system — instead of a person drawing every screen by hand.
 
-**This is the `template` branch.** No DS-specific content is included; everything in `ds/` is a placeholder waiting for a real design system. To use:
-
-1. Branch off `template` for your DS (`git checkout -b your-ds-name`)
-2. Follow `scripts/README.md` step-by-step — it's the agent-friendly onboarding guide
-3. After staging tokens + capturing keys + customising the DS docs, the repo is ready
-
-**No design source files belong here.** No exported frames, no component code, no demo apps.
+The screens themselves live in **Figma** (the design tool). This repo doesn't hold pictures. It
+holds the **rules, the memory, and the notes** that tell the AI how to design the way we want.
 
 ---
 
-## What this enables
+## The simple idea (think LEGO)
 
-Hand creative direction to Claude Code → Claude produces dev-ready Figma frames against your DS → engineers consume them in Figma dev mode with all components and styles resolvable. Zero margin for spec drift, zero lorem ipsum, zero detached instances.
+- Our **design system** is a box of official LEGO pieces — ready-made buttons, panels, menus, etc.
+  Every piece already has the right shape and color.
+- This **repo** is the **rulebook + the catalog of pieces** + a notebook of things we've learned.
+- **Claude** is the builder. You tell it what to make; it snaps the official pieces together
+  following the rules.
+- **You** are the person who says *"build me the settings page"* and checks the result.
+
+The whole point: Claude should **reuse the official pieces**, never glue together its own
+look-alike, and never break the design system. The rules and catalog here are what keep it honest.
 
 ---
 
-## Layout
+## How a task works (start to finish)
+
+1. **You ask.** Drop a screenshot, a Figma link, or a sentence describing the screen you want.
+2. **Claude reads the rules first.** It loads `ds/design-rules.md` (how things must look) and a few
+   guides so it knows the house style before touching anything.
+3. **Claude checks the catalog.** It opens `ds/ds-inventory.md` to see which ready-made pieces
+   already exist for the job. If a piece exists, it must use it — no building look-alikes by hand.
+4. **Claude builds it in Figma**, snapping those pieces together and using our exact colors,
+   spacing, and fonts (no random values).
+5. **Claude checks its own work** against the rules, fixes problems, and writes down anything new it
+   learned (like a piece's location) so next time is faster.
+6. **Claude tells you** in chat what it built, with a short summary.
+
+If something is unclear or it's about to invent something new, it **asks you first** instead of
+guessing.
+
+---
+
+## What's in here (plain-English map)
 
 ```
-/
-├── README.md            ← you are here
-├── PLAYBOOK.md          ← durable operating contract (generic)
-├── .claude/skills/design/SKILL.md  ← /design skill (loads rules + HCI laws)
-├── ds/                  ← DS-specific. Swap-point for templating.
-│   ├── config.md        ← Figma file URL, domain, voice, defaults
-│   ├── tokens/          ← JSON mirrors of Figma variables (1 file per category)
-│   │   ├── colors.json    ← palette (authoritative)
-│   │   ├── semantic.json  ← semantic colors (alias + resolved hex)
-│   │   ├── typography.json← text styles catalog (curated from page)
-│   │   ├── spacing.json   ← spacing scale + component padding
-│   │   ├── radius.json    ← corner radius scale
-│   │   └── _resolver.sh   ← single entry point for any token lookup
-│   ├── design-rules.md  ← strict, no-margin rules from user (overrides PLAYBOOK)
-│   ├── product-context.md← Product / personas / voice / sample data
-│   ├── production-layout-spec.md ← layout pattern + component vocabulary from canvas refs
-│   ├── figma-keys.md    ← captured library / component variant / text-style / icon keys
-│   ├── icons.md         ← icon name list
-│   └── components.md    ← component manifest (lookup index, not a copy)
-├── principles/          ← generic knowledge (any DS, any project)
-│   ├── hci-laws.md      ← UX/HCI laws & heuristics for design + critique
-│   └── figma-plugin-api.md← operational notes on use_figma (probe, bind, import)
-└── templates/           ← generic workflow templates
-    └── brief.md         ← structure for incoming briefs (designers/PMs)
+README.md          ← this file
+PLAYBOOK.md        ← the master rulebook for how the AI should work
+
+.claude/
+  skills/design/   ← the checklist the AI runs before designing (loads the rules)
+  skills/design-critic/ ← how the AI critiques a design
+  agents/          ← helper AIs for specific jobs (planning, checking, probing Figma)
+
+ds/                ← everything specific to OUR design system (UnifyApps)
+  design-rules.md          ← the strict "how it must look" rules
+  product-context.md       ← what UnifyApps is, who uses it, how we write copy
+  production-layout-spec.md ← examples of our best screens to copy the style from
+  ds-inventory.md          ← the CATALOG: every ready-made piece and where to find it
+  components.md            ← notes on pieces we've used + how to use them
+  figma-keys.md            ← the "addresses" the AI needs to grab a piece from Figma
+  icons.md                 ← list of available icons
+  config.md                ← which Figma file we draw in, plus settings
+  tokens/                  ← our exact colors, spacing, fonts, corner-roundness
+    _resolver.sh           ← quick tool to look up any color/spacing value
+
+principles/        ← general design knowledge (true for any project)
+  hci-laws.md      ← rules of thumb for good, usable design
+  figma-plugin-api.md ← technical notes for controlling Figma
+
+scripts/           ← setup helpers + the onboarding guide (scripts/README.md)
+templates/brief.md ← a simple form for requesting a new screen
 ```
 
-### Why this shape
-- `PLAYBOOK.md` is generic — survives any DS.
-- `ds/` is the only thing that changes per design system. Drop a different `ds/` in and the workflow retargets.
-- `principles/` and `templates/` carry reusable workflow scaffolding that's DS-agnostic.
+**Rule of thumb:** the `ds/` folder is the only part that's about *our* design system. Everything
+else (`PLAYBOOK.md`, `principles/`, `templates/`) is general and would work for any design system.
 
 ---
 
-## How a task runs
+## Why it's set up this way
 
-1. **Brief lands in chat.** Screenshots, Figma component links, written description, or a filled-out `templates/brief.md` (the format designers and PMs use).
-2. **Claude reads only what's needed.** Token values from `ds/tokens/tokens.css`. Component metadata from `ds/components.md`. Component geometry/variants from Figma via MCP — only the components named in the brief.
-3. **Claude designs in the target Figma file.** Frame named per the PLAYBOOK convention. All layers auto-laid out, all values bound to DS variables, all components are instances (not copies).
-4. **Judgment calls flagged in chat** at the moment they're made. Information-architecture / new-pattern decisions ask first.
-5. **Handoff confirmed in chat** with a one-line summary of what changed.
-
-See `PLAYBOOK.md` for the full operating contract.
-
----
-
-## Templating (future)
-
-The repo is shaped so retargeting to another DS is a folder swap:
-
-1. Replace the JSON files in `ds/tokens/` with the new DS's exports (colors, semantic, typography, spacing, radius, widths, shadows, blurs).
-2. Replace `ds/icons.md` with the new DS's icon list.
-3. Update `ds/config.md` with the new Figma file URL, domain, voice, defaults.
-4. Reset `ds/components.md` to empty — it grows as components are shared.
-5. `PLAYBOOK.md`, `principles/`, and `templates/` stay untouched.
-
-The split between generic root-level files (`PLAYBOOK.md`, `principles/`, `templates/`) and `ds/` is the templating boundary.
+- **The AI gets faster over time.** Whenever it learns where a piece lives, it writes it in the
+  catalog (`ds/`). Next time it skips the searching and goes straight to building.
+- **It can't drift.** The rules and catalog force it to use real pieces and real values, so every
+  screen looks like it belongs to UnifyApps.
+- **It's swappable.** To use this for a *different* design system, you'd just replace the `ds/`
+  folder; the rest stays the same.
 
 ---
 
-## Status
+## Want to request a screen?
 
-- Template branch. Generic scaffold only.
-- Use `scripts/README.md` to onboard a real DS.
+Just describe it in chat (a screenshot or Figma link helps a lot). For anything bigger, fill in
+`templates/brief.md`. The full operating contract for the AI is in `PLAYBOOK.md`.
