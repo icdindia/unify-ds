@@ -74,15 +74,21 @@ Lined icons used so far are keyed in `ds/figma-keys.md` → Icon component keys.
 | `Input Menu Dropdown` | `6b0c7c2af450141e3aa2ef094dcb0fbe61594ae1` | TBD | composable | Closest to list-row atom (dropdown intent) |
 | `Table` | `64048af04a68983c637e24ffe7b49d206822d6d1` | TBD | composable | Full data table (no standalone row sub-component) |
 
-**Confirmed absent from Unify2026 DS** (local composition required per PLAYBOOK §5):
-- Card / Section / Panel container
-- File attachment list item / upload queue row
-- Generic list row (icon + title + supporting text + trailing action)
-- Setting toggle row (title + description + Toggle)
+**CORRECTED 2026-06-26 after full DS sweep** — most of the earlier "absent" list was WRONG (the
+manifest was just incomplete). Full catalog now in `ds/ds-inventory.md`. These DO exist — use them:
+- Generic list row → **`List Item`** / **`List Item Cardified`** (icon+title+supporting+badge+actions)
+- File attachment / upload queue row → **`Uploaded File base`**, **`File Upload empty state`**
+- Footer / action bar → **`Section footer`** (form/page), **`Side panel footer`**, **`Builder Footer`**
+- Metadata label/value row (Details rail, record fields) → **`Key Value Horizontal`** / **`Key Value Vertical`**
+- Code/mono pill → **`Code Pill`**; close-X button → **`_Button close X`**; toolbar icon button → **`Small Icon Button`**
+- Sidepane/right-rail header → **`Sidepane header`** (or **`Side Panel header`**); side panel body → **`Side Panel`**
+
+**Genuinely absent (compose locally per §5):**
+- Card / Section / Panel container (plain styled frame)
+- Setting toggle row (title + description + Toggle) — compose from `Toggle` + text
 - Conversation starter chip / prompt pill
-- Footer / action bar (page-level bottom bar with Save/Cancel)
-- Settings vertical / side navigation (expandable section nav with parent+children, chevron, active state) — NO DS component. Compose locally.
-- Governance section row (tinted icon square + title + count badge + subtitle) — NO DS component. Compose locally.
+- Settings vertical/side navigation (expandable parent+children nav) — closest atoms: `Settings_Nav item base` `17394d4e6601bbb9d0748900ae5c1aac885a8dcd` + `Settings_Nav item dropdown base` `39ae7a9cfd358e9d5c49a74e363adb56217ffcb8` (compose the container)
+- Governance section row (tinted icon square + title + count badge + subtitle)
 
 ## Side Panel kit (2026-06-26)
 

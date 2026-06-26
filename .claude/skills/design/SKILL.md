@@ -14,6 +14,35 @@ You are about to do design work for the linked DS. Four source documents are man
 
 Read all four at the start of every design task. They are short. Don't skip.
 
+---
+
+## Step 0 — Pre-build gates (MANDATORY, before any `use_figma` write)
+
+These two gates are non-negotiable. They exist because the costly failure mode is **building the
+wrong thing** — hand-composing a header/footer/panel/row that the DS already ships, then redoing it.
+
+**Gate 1 — Component check.** Before building ANY header, footer, panel/drawer, list row, card,
+metadata row, pill, tab, modal, nav, empty state, or input: open **`ds/ds-inventory.md`** (the full
+DS catalog) and **`ds/components.md`**. If the role exists there → use that DS component (instance +
+variants), do not hand-roll. If it's not in the inventory and not obviously a plain container →
+**ask one line ("DS has an X component?") OR probe before composing locally.** Never hand-roll first.
+
+**Gate 2 — No molecule from atoms.** Do not assemble a header/footer/panel/row/button/pill from
+raw frames + text when a DS molecule exists. Composing locally is allowed ONLY for the roles in
+`components.md` → "Genuinely absent", and must use DS tokens.
+
+**Use the caches — zero live discovery:**
+- Token bindings → `ds/tokens/figma-var-keys.json` (variable keys) + `ds/tokens/typography.json`
+  (text-style keys). Only fetch a key live if it's not in these files, then add it.
+- Component keys + variant axes → `ds/ds-inventory.md`. Instantiate via
+  `importComponentByKeyAsync(defaultVariantKey)` then `setProperties`.
+- DS-file probing: never `setCurrentPageAsync` on big pages (times out). Use `get_metadata`, or
+  `getNodeByIdAsync` (keys, no page switch), or `page.loadAsync()` for shallow enumeration.
+
+Skipping Step 0 is the single biggest waste in this workflow. Do it first, every time.
+
+---
+
 **Width**: production canvases are **1440** (per `ds/design-rules.md`). The refs in `production-layout-spec.md` were studied at 1728 (aspirational quality reference) — match the structural pattern + component vocabulary, render at 1440.
 
 ---
