@@ -167,7 +167,7 @@ From the `Lined Icons` sub-frame (`3463:407484`) on the Icons page, DS source fi
 | zap | `1bce93b22f22af3521d8102bbaf4bf44b709ffab` | `59626:5767` |
 | link-external-01 | `6392788c5bca126e2679f635985a4ca58a8f07f9` | `59626:5795` |
 | play | `065a3a67abf88b58acdbae03ae773eb6468a2465` | `59626:6732` |
-| edit-05 | `7a8d591cfefeb012fd4e5cbf94717649a9aac810` | `59626:6011` |
+| edit-05 | `7a8d591fcefeb012fd4e5cbf94717649a9aac810` | `59626:6011` |
 | book-open-01 | `b8adad70911a511908e42c83a85a45d0f07c51a0` | `59626:4295` |
 
 > Substitutions (DS has no exact match): `message-chat-circle`→`message-chat-square`; `link-external-02`→`link-external-01`; `edit-02`→`edit-05` (the `edit` COMPONENT_SET `d7110875d047e7ff86104c5850075fb1368e6479` / node `60571:137842` may carry `edit-02` as a variant — sub-probe if exact needed).
@@ -253,5 +253,53 @@ From the `Lined Icons` sub-frame (`3463:407484`) on the Icons page, DS source fi
 | users-plus | `875043dc0f3bf522aaafc8627b1b9737ba7e8274` | `59626:6497` |
 | user-check-01 | `be0d18c4e5e86a01a2dc780ca62f8f187e0a66fa` | `59626:6393` |
 | user-x-01 | `26667cfbffb568da337c0bb27295ebdad38d9b0d` | `59626:6465` |
+
+## Side Panel kit (DS `APPLICATION COMPONENTS`, 2026-06-26)
+
+The DS ships a full side-panel/drawer system — **use these, don't hand-roll** (standard panel width ≈ **560**). Pages: `Side Panel` `9501:2358`, `Code snippets` `1221:106300`, `Section footers` `3275:371793`.
+
+### Side Panel header — `Side Panel header` (set `9dc812e0de353ae51bc748d50a9d2d37a1ad7c2a`)
+- `Type=With Icon+Subtitle, Tabs=False` → `3a85d3a804f569554c9da31a846229f4259a0652` (560×90) ← used
+- `Type=With Icon+Subtitle, Tabs=True` → `c48d0eb31845dbaf65db40fa8fbf699ab478f15d`
+- `Type=Basic, Tabs=False` → `f098be07cfdfbd5316076698c574c96447a36650`
+- Booleans: `Back Button#47862:6`, `Breadcrumb#36664:10`, `Divider#36664:0`, `Pill#41227:0`, `Subtitle#36664:5`, `Actions#10062:0`.
+- Slots: title TEXT `Text`("Heading"); subtitle TEXT `Supporting text`; status pill `Pill squared` (inner TEXT); icon `Featured icon` (swap prop `🔀 Icon swap#3465:0` + `Size`/`Color` variants); breadcrumb `Breadcrumb Bar`; action cluster = `Buttons/Button Neutral` (incl `expand-01`) + a Message/comments group. Set `Breadcrumb#`=false for a contextless slide-over.
+
+### Side Panel body — `Side Panel` (set `bfafe72a9742976cdf12cd17297b13d31116a17f`)
+- `Type=Key Value` → `5e45930bfe7d7c936c6db64f27ad52ef41d59e84` (550×900) — the "Fields" representation
+- `Type=Table` → `96b741dbd960258b902cbf6fcc49215e185409ff`
+
+### Code snippet — `Code snippet` (set `b02411f8b10673a13ec42f20f731c367e06f808d`)
+- `Label=No` → `fd92ad8ee491894ff648c402d52a13d1450ea4cc` (720×420) ← used for the JSON view
+- `Label=Yes` → `c881eb2020b8238797d44f0702f4b602a81b894c`
+- Booleans: `Header#36109:18`, `Maximise#36109:4`, `Show Scroll bar#23313:2`, `Toggle#36109:7`, `Token Dropdown#36109:6`, `Dropdown Type#36109:5`. Set `Token Dropdown`=false to declutter.
+- Structure: `Card Header` (lang label TEXT `application/json` + `code-01` + Toggle group `Schema|Example` + maximise/copy `Button Neutral`) · `Body` → `Sidebar` (auto line numbers = `Number Wrap` frames; **hide extras beyond your line count**) + `Body Content` → **`Code` TEXT node** (set `.characters`; syntax-color via `setRangeFills` with bound-variable paints — load `getRangeAllFontNames` first). Set `Content`/`Body`/`Body Content` `layoutSizingVertical=FILL` to stretch the card to panel height.
+
+### Side panel footer — `Side panel footer` (set `0773869e9aa1848dc24fa089be7b468e86ddf8dc`)
+- `Type=Double Button` → `495409664b1a0b17e10517f38a1f4222697abdb3` (448×60) ← used (neutral + brand button; relabel `Cancel`/`Save`)
+- `Type=Message` → `f297baad458bd12c550efb1b04e3f46ad07ae32d`
+
+## Record-detail (JSON) side-panel probe (2026-06-26)
+
+### Icons (Lined set, Icons page `3463:407484`)
+| Icon name | Key |
+|---|---|
+| copy-01 | `afe12ada75b466c44afcd1d840c57d32d173ecdd` |
+| maximize-01 | `9ba6816e78e8451c6efb081bc0fee0ed1967ccc4` |
+| download-01 | `3471f47982c252b8e01fc66833f293c95d023915` |
+| file-download-03 | `70a3391323306bb10d8cc09c3bd28cab0c146943` |
+| dots-vertical | `258a48ff6fcd9652587654d5b7f8c64197de7a17` |
+| code-01 | `e7a9fd613f63e12c10cafe218115dffa1ca071a3` |
+
+> **Correction**: `edit-05` key in earlier table had a typo (`...591c...`); correct is
+> `7a8d591fcefeb012fd4e5cbf94717649a9aac810`. Fixed above.
+> **Quirk (don't relitigate)**: `Buttons/Button Brand` **Secondary** variant renders its
+> leading-icon swap slot as a bare **circle** regardless of the swapped component (tested
+> download-01 + file-download-03, both → circle). Primary & Tertiary swap leading icons fine.
+> Workaround: make Secondary buttons that need an icon text-only, or use Primary/Tertiary.
+> No DS code-editor / JSON-viewer component exists — compose the code surface locally
+> (bg-secondary card + per-line rows: fixed-width mono gutter number + colored mono spans).
+> Syntax token map used: key→`text-primary`, string→`utility-success-600`, number→
+> `utility-orange-700`, punctuation→`text-quaternary`, empty `{}`→`text-tertiary`.
 
 > Icon substitutions for this build: `user-circle` → use `user-square` (exact match unavailable); `address-book` → use `user-square` (none in DS); `id` → use `user-square` (none in DS); `person-badge` → use `user-square` (none in DS); `user-plus` (without -01) → use `user-plus-01`; `security/person-badge icon for Governance` → use `user-square`; `doc-lock icon for Security` → use `lock-01` or `shield-01`.

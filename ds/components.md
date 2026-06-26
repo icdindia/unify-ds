@@ -84,6 +84,19 @@ Lined icons used so far are keyed in `ds/figma-keys.md` → Icon component keys.
 - Settings vertical / side navigation (expandable section nav with parent+children, chevron, active state) — NO DS component. Compose locally.
 - Governance section row (tinted icon square + title + count badge + subtitle) — NO DS component. Compose locally.
 
+## Side Panel kit (2026-06-26)
+
+Full DS drawer/slide-over system — use for any side panel (standard width ≈560). Keys in `ds/figma-keys.md` → "Side Panel kit".
+
+| Component set | setKey | Variant axes | Role | Used for |
+|---|---|---|---|---|
+| `Side Panel header` | `9dc812e0de353ae51bc748d50a9d2d37a1ad7c2a` | Type · Tabs | core | Drawer header (icon · title · subtitle · pill · breadcrumb · actions · tabs) |
+| `Side Panel` | `bfafe72a9742976cdf12cd17297b13d31116a17f` | Type (Key Value / Table) | core | Drawer body content |
+| `Code snippet` | `b02411f8b10673a13ec42f20f731c367e06f808d` | Label · Header · Maximise · Toggle · Token Dropdown · Scroll bar | core | Code/JSON viewer (auto gutter, lang label, copy/maximise, `Code` TEXT slot) |
+| `Side panel footer` | `0773869e9aa1848dc24fa089be7b468e86ddf8dc` | Type (Double Button / Message) | core | Drawer footer action bar |
+
+> Supersedes the "Footer/action bar — confirmed absent" note for the side-panel case: a DS side-panel footer DOES exist (`Side panel footer`). The page-level form footer is still locally composed.
+
 ## Governance / Settings page (2026-06-25)
 
 | Component set | setKey | Variant axes | Role | Used for |
