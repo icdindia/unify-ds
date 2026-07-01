@@ -178,7 +178,7 @@ async function run(){
     if (versions.length < 2) throw new Error("This file has fewer than 2 saved versions — nothing to compare yet.");
     versions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     const latest = versions[0];
-    const past = versions.find((v) => dayKey(v.created_at) !== dayKey(latest.created_at)) || versions[1];
+    const past = versions[1]; // the immediately previous saved checkpoint
 
     // 2. Snapshot the page at both versions.
     setStatus("Fetching last-change snapshot…", false, true);

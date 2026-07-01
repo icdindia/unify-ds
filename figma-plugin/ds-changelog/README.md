@@ -19,7 +19,7 @@ else is automated:
 
 | Step | Automated behaviour |
 |------|--------------------|
-| Which two states to compare | **Past** = the most recent saved version on a *different day* than the latest (falls back to the immediately previous version). **Now** = today. |
+| Which two states to compare | **Past** = the immediately previous saved checkpoint (the version just before the latest). **Now** = today. |
 | Reading version control | Figma REST `GET /files/:key/versions`, then `GET /files/:key/nodes?ids=<page>&version=<id>` for each snapshot. |
 | What to diff | Every node's fills/strokes (colour), autolayout padding + gap (spacing), text style + font specs (typography), corner radius. |
 | Token names | Bound variable IDs → names via the plugin API; shared style IDs → names from the REST `styles` map. |
