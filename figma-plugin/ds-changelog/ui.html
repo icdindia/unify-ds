@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  :root{
+    --ink:#1f1e1d; --sub:#6a6662; --faint:#9f9993; --line:#e6e1d8; --panel:#faf8f4;
+    --white:#fff; --brand:#112d06;
+    --added:#1f7a3d; --deleted:#b42318; --modified:#b25e09; --custom:#7a3ca0;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font);color:var(--ink);font-size:12px;background:var(--white);}
+  .wrap{display:flex;flex-direction:column;height:100vh;}
+
+  header{padding:14px 16px 12px;border-bottom:1px solid var(--line);}
+  header h1{margin:0;font-size:14px;font-weight:600;}
+  header p{margin:3px 0 0;color:var(--sub);font-size:11px;}
+
+  .controls{display:flex;align-items:flex-end;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .field{display:flex;flex-direction:column;gap:4px;}
+  .field label{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--sub);}
+  select,input[type=password]{font-family:var(--font);font-size:12px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);min-width:260px;outline:none;}
+  select:focus,input:focus{border-color:var(--brand);}
+  button{font-family:var(--font);font-size:12px;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid transparent;cursor:pointer;}
+  .primary{background:var(--brand);color:#fff;}
+  .primary:disabled{opacity:.45;cursor:not-allowed;}
+  .ghost{background:transparent;border-color:var(--line);color:var(--ink);}
+  .link{background:none;border:none;color:var(--custom);cursor:pointer;text-decoration:underline;padding:0;font-size:11px;}
+
+  .setup{padding:14px 16px;border-bottom:1px solid var(--line);background:var(--panel);}
+  .setup p{margin:0 0 8px;color:var(--sub);font-size:11px;line-height:1.5;}
+  .setup a{color:var(--brand);}
+  .setup .row{display:flex;gap:8px;align-items:center;}
+
+  .status{padding:10px 16px;font-size:11px;color:var(--sub);border-bottom:1px solid var(--line);min-height:34px;display:flex;align-items:center;gap:8px;}
+  .status.err{color:var(--deleted);}
+  .spinner{width:12px;height:12px;border:2px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin .7s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .summary{padding:12px 16px;display:none;gap:16px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--line);}
+  .summary .head{font-size:13px;font-weight:600;}
+  .summary .count{font-size:11px;color:var(--sub);}
+  .summary .pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+
+  .scroll{flex:1;overflow:auto;}
+  table{width:100%;border-collapse:collapse;font-size:11px;}
+  thead th{position:sticky;top:0;background:var(--panel);text-align:left;padding:8px 12px;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--sub);border-bottom:1px solid var(--line);}
+  tbody td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:hover{background:#fbfaf7;}
+  .cat{font-weight:600;white-space:nowrap;}
+  .tok{font-family:'SF Mono',ui-monospace,Menlo,monospace;font-size:10.5px;}
+  .val{color:var(--sub);font-family:'SF Mono',ui-monospace,Menlo,monospace;font-size:10.5px;}
+  .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;border:1px solid rgba(0,0,0,.15);margin-right:5px;vertical-align:-1px;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;white-space:nowrap;}
+  .b-Added{background:#e7f4ec;color:var(--added);}
+  .b-Deleted{background:#fbeae8;color:var(--deleted);}
+  .b-Modified{background:#fbf1e4;color:var(--modified);}
+  .b-Custom{background:#f3ebf8;color:var(--custom);}
+
+  footer{padding:12px 16px;border-top:1px solid var(--line);display:none;justify-content:flex-end;gap:10px;}
+  .empty{padding:40px 16px;text-align:center;color:var(--faint);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>DS Changelog — Token Diff</h1>
+    <p>Pick a page. The plugin auto-detects the last saved change, diffs every colour, spacing &amp; typography token against today, and records it on the <b>Changelog</b> page.</p>
+  </header>
+
+  <!-- One-time token setup (hidden once saved) -->
+  <div class="setup" id="setup" style="display:none;">
+    <p>One-time setup: this plugin reads version history through the Figma REST API, which needs a
+      <b>Personal Access Token</b>. Create one at
+      <a href="https://www.figma.com/settings" target="_blank">figma.com/settings → Personal access tokens</a>
+      with <b>File content: Read</b> scope. It is stored only on this device (clientStorage).</p>
+    <div class="row">
+      <input type="password" id="tokenInput" placeholder="figd_…" />
+      <button class="primary" id="saveToken">Save token</button>
+    </div>
+  </div>
+
+  <!-- The ONLY user input: the page dropdown -->
+  <div class="controls">
+    <div class="field">
+      <label for="pageSelect">Design System page</label>
+      <select id="pageSelect"><option>Loading pages…</option></select>
+    </div>
+    <button class="primary" id="analyze" disabled>Analyze &amp; record</button>
+    <button class="link" id="changeToken" style="display:none;">change token</button>
+  </div>
+
+  <div class="status" id="status">Ready.</div>
+
+  <div class="summary" id="summary">
+    <span class="head" id="sumHead"></span>
+    <span class="count" id="sumCount"></span>
+    <span class="pill"><span class="dot" style="background:var(--added)"></span><span id="cAdded">0</span> added</span>
+    <span class="pill"><span class="dot" style="background:var(--modified)"></span><span id="cModified">0</span> modified</span>
+    <span class="pill"><span class="dot" style="background:var(--deleted)"></span><span id="cDeleted">0</span> deleted</span>
+    <span class="pill"><span class="dot" style="background:var(--custom)"></span><span id="cCustom">0</span> custom</span>
+  </div>
+
+  <div class="scroll" id="scroll">
+    <div class="empty" id="empty">Results will appear here.</div>
+  </div>
+
+  <footer id="footer">
+    <button class="ghost" id="closeBtn">Close</button>
+    <button class="primary" id="rerun">Run again</button>
+  </footer>
+</div>
+
+<script>
+const API = "https://api.figma.com/v1";
+let FILE_KEY = null, FILE_NAME = "", PAT = null, PAGES = [];
+let pendingResolve = null; // resolver for the name-resolution round-trip
+
+const $ = (id) => document.getElementById(id);
+const post = (msg) => parent.postMessage({ pluginMessage: msg }, "*");
+
+// ---------- receive from main thread ----------
+onmessage = (e) => {
+  const m = e.data.pluginMessage; if (!m) return;
+  switch (m.type) {
+    case "init":
+      FILE_KEY = m.fileKey; FILE_NAME = m.fileName; PAGES = m.pages;
+      fillPages(m.pages);
+      togglesetup(!m.hasToken);
+      if (m.hasToken) post({ type: "get-token" });
+      break;
+    case "token": PAT = m.token; break;
+    case "token-saved": post({ type: "get-token" }); togglesetup(false); setStatus("Token saved."); break;
+    case "names-resolved": if (pendingResolve) { pendingResolve(m.map); pendingResolve = null; } break;
+    case "written": setStatus("✔ Recorded on the Changelog page."); $("footer").style.display = "flex"; break;
+    case "error": setStatus(m.message, true); resetBtn(); break;
+  }
+};
+
+function fillPages(pages){
+  const sel = $("pageSelect"); sel.innerHTML = "";
+  pages.forEach((p) => { const o = document.createElement("option"); o.value = p.id; o.textContent = p.name; sel.appendChild(o); });
+  $("analyze").disabled = false;
+}
+function togglesetup(show){
+  $("setup").style.display = show ? "block" : "none";
+  $("changeToken").style.display = show ? "none" : "inline";
+}
+function setStatus(text, isErr, busy){
+  const s = $("status"); s.className = "status" + (isErr ? " err" : "");
+  s.innerHTML = (busy ? '<span class="spinner"></span>' : "") + text;
+}
+function resetBtn(){ $("analyze").disabled = false; $("analyze").textContent = "Analyze & record"; }
+
+// ---------- UI wiring ----------
+$("saveToken").onclick = () => { const v = $("tokenInput").value.trim(); if (!v) return; post({ type: "save-token", token: v }); };
+$("changeToken").onclick = () => togglesetup(true);
+$("closeBtn").onclick = () => post({ type: "close" });
+$("rerun").onclick = () => { $("footer").style.display = "none"; run(); };
+$("analyze").onclick = run;
+
+// ---------- main flow ----------
+async function run(){
+  if (!FILE_KEY){ setStatus("Can't read the file key — open this inside the Design System file.", true); return; }
+  if (!PAT){ togglesetup(true); setStatus("Add a Personal Access Token first.", true); return; }
+  const pageId = $("pageSelect").value;
+  const pageName = $("pageSelect").selectedOptions[0].textContent;
+
+  $("analyze").disabled = true; $("analyze").textContent = "Working…";
+  $("summary").style.display = "none"; $("scroll").innerHTML = '<div class="empty">Analyzing…</div>';
+
+  try {
+    // 1. Version history -> pick baseline (last change) vs latest.
+    setStatus("Reading version history…", false, true);
+    const versions = await getVersions();
+    if (versions.length < 2) throw new Error("This file has fewer than 2 saved versions — nothing to compare yet.");
+    versions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    const latest = versions[0];
+    const past = versions.find((v) => dayKey(v.created_at) !== dayKey(latest.created_at)) || versions[1];
+
+    // 2. Snapshot the page at both versions.
+    setStatus("Fetching last-change snapshot…", false, true);
+    const pastDoc = await getPageNode(pageId, past.id);
+    setStatus("Fetching current snapshot…", false, true);
+    const nowDoc = await getPageNode(pageId, latest.id);
+
+    // 3. Extract token maps and diff.
+    setStatus("Diffing tokens…", false, true);
+    const oldMap = extract(pastDoc.document, pastDoc.styles || {});
+    const newMap = extract(nowDoc.document, nowDoc.styles || {});
+    let rows = diff(oldMap, newMap);
+
+    // 4. Resolve variable IDs -> names via the main thread.
+    const varIds = [...new Set(rows.flatMap((r) => [r.wasVarId, r.nowVarId].filter(Boolean)))];
+    setStatus("Resolving variable names…", false, true);
+    const nameMap = await resolveNames(varIds);
+    rows = rows.map((r) => finalizeRow(r, nameMap));
+
+    // 5. Render + record.
+    const meta = {
+      pageName, pageId,
+      pastDate: fmtDate(past.created_at),
+      todayDate: fmtDate(new Date().toISOString()),
+      pageUrl: `https://www.figma.com/design/${FILE_KEY}/?node-id=${pageId.replace(/:/g, "-")}`,
+      rows, counts: tally(rows),
+    };
+    render(meta);
+    setStatus("Writing to Changelog page…", false, true);
+    post({ type: "write-changelog", payload: meta });
+  } catch (err) {
+    setStatus(String(err.message || err), true);
+    $("scroll").innerHTML = '<div class="empty">—</div>';
+  } finally {
+    resetBtn();
+  }
+}
+
+// ---------- REST helpers ----------
+async function api(path){
+  const res = await fetch(API + path, { headers: { "X-Figma-Token": PAT } });
+  if (res.status === 403) throw new Error("403 — token lacks 'File content: Read' scope, or no access to this file.");
+  if (!res.ok) throw new Error(`Figma API ${res.status}: ${(await res.text()).slice(0, 140)}`);
+  return res.json();
+}
+async function getVersions(){
+  let out = [], path = `/files/${FILE_KEY}/versions`;
+  for (let i = 0; i < 3 && path; i++){ // a few pages is plenty
+    const j = await api(path);
+    out = out.concat(j.versions || []);
+    const next = j.pagination && j.pagination.next_page;
+    path = next ? next.replace(API, "") : null;
+    if (out.length >= 60) break;
+  }
+  return out;
+}
+async function getPageNode(pageId, versionId){
+  const j = await api(`/files/${FILE_KEY}/nodes?ids=${encodeURIComponent(pageId)}&version=${versionId}`);
+  const entry = j.nodes && j.nodes[pageId];
+  if (!entry) throw new Error("That page didn't exist in the compared version.");
+  return entry; // { document, styles, components }
+}
+function resolveNames(variableIds){
+  return new Promise((resolve) => { pendingResolve = resolve; post({ type: "resolve-names", variableIds, styleIds: [] }); });
+}
+
+// ---------- extraction: node tree -> { key -> descriptor } ----------
+// key = `${nodeId}::${category}::${property}` ; descriptor = {category, node, property, value, varId, styleName}
+function extract(root, stylesMap){
+  const map = {};
+  walk(root, (n) => {
+    const nodeName = n.name || n.type;
+    // ----- COLOUR: fills & strokes -----
+    collectPaints(n, "fills", "fill", nodeName, stylesMap, map);
+    collectPaints(n, "strokes", "stroke", nodeName, stylesMap, map);
+    // ----- SPACING: autolayout -----
+    if (n.layoutMode && n.layoutMode !== "NONE"){
+      ["paddingLeft","paddingRight","paddingTop","paddingBottom","itemSpacing"].forEach((p) => {
+        if (typeof n[p] === "number"){
+          put(map, n.id, "spacing", p, {
+            category:"spacing", node:nodeName, property:p,
+            value:`${round(n[p])}px`, varId:boundId(n, p),
+          });
+        }
+      });
+    }
+    // ----- RADIUS -----
+    if (typeof n.cornerRadius === "number"){
+      put(map, n.id, "radius", "cornerRadius", {
+        category:"radius", node:nodeName, property:"cornerRadius",
+        value:`${round(n.cornerRadius)}px`, varId:boundId(n, "cornerRadius"),
+      });
+    }
+    // ----- TYPOGRAPHY -----
+    if (n.type === "TEXT"){
+      const textStyleId = n.styles && n.styles.text;
+      if (textStyleId && stylesMap[textStyleId]){
+        put(map, n.id, "typography", "text style", {
+          category:"typography", node:nodeName, property:"text style",
+          value:"—", styleName:stylesMap[textStyleId].name,
+        });
+      }
+      const s = n.style || {};
+      const typo = [
+        ["fontFamily", s.fontFamily],
+        ["fontSize", s.fontSize != null ? `${round(s.fontSize)}px` : null],
+        ["fontWeight", s.fontWeight],
+        ["lineHeight", s.lineHeightPx != null ? `${round(s.lineHeightPx)}px` : (s.lineHeightPercent != null ? `${round(s.lineHeightPercent)}%` : null)],
+        ["letterSpacing", s.letterSpacing != null ? `${round(s.letterSpacing)}` : null],
+      ];
+      typo.forEach(([prop, val]) => {
+        if (val == null || val === "") return;
+        put(map, n.id, "typography", prop, {
+          category:"typography", node:nodeName, property:prop,
+          value:String(val), varId:boundId(n, prop),
+        });
+      });
+    }
+  });
+  return map;
+}
+
+function collectPaints(n, arrKey, label, nodeName, stylesMap, map){
+  const arr = n[arrKey];
+  if (!Array.isArray(arr) || !arr.length) return;
+  const styleId = n.styles && n.styles[label === "fill" ? "fill" : "stroke"];
+  arr.forEach((paint, j) => {
+    if (!paint || paint.visible === false) return;
+    let value = "(non-solid)";
+    if (paint.type === "SOLID" && paint.color) value = hexOf(paint.color, paint.opacity);
+    else if (paint.type) value = `(${paint.type.toLowerCase()})`;
+    const varId =
+      (paint.boundVariables && paint.boundVariables.color && paint.boundVariables.color.id) ||
+      (n.boundVariables && n.boundVariables[arrKey] && n.boundVariables[arrKey][j] && n.boundVariables[arrKey][j].id) ||
+      null;
+    const styleName = !varId && styleId && stylesMap[styleId] ? stylesMap[styleId].name : null;
+    put(map, n.id, "colour", arr.length > 1 ? `${label}[${j}]` : label, {
+      category:"colour", node:nodeName, property:(arr.length > 1 ? `${label}[${j}]` : label),
+      value, varId, styleName,
+    });
+  });
+}
+
+function boundId(n, prop){
+  return n.boundVariables && n.boundVariables[prop] && n.boundVariables[prop].id ? n.boundVariables[prop].id : null;
+}
+function put(map, nodeId, category, property, desc){ map[`${nodeId}::${category}::${property}`] = desc; }
+
+function walk(node, fn){
+  if (!node) return;
+  fn(node);
+  if (node.children) for (const c of node.children) walk(c, fn);
+}
+
+// ---------- diff ----------
+function diff(oldMap, newMap){
+  const rows = [];
+  const keys = new Set([...Object.keys(oldMap), ...Object.keys(newMap)]);
+  for (const k of keys){
+    const o = oldMap[k], nw = newMap[k];
+    if (o && !nw){ rows.push(makeRow("Deleted", o, null)); continue; }
+    if (!o && nw){ rows.push(makeRow("Added", null, nw)); continue; }
+    // both present
+    const oTok = tokenSig(o), nTok = tokenSig(nw);
+    const tokenChanged = oTok !== nTok;
+    const valueChanged = o.value !== nw.value;
+    if (!tokenChanged && !valueChanged) continue;
+    let status;
+    if (oTok && !nTok) status = "Custom";      // was bound to a token, now a raw value
+    else status = "Modified";                  // token swapped, tokenized, or value changed
+    rows.push(makeRow(status, o, nw));
+  }
+  // stable, readable ordering
+  const order = { Added:0, Modified:1, Custom:2, Deleted:3 };
+  const catOrder = { colour:0, typography:1, spacing:2, radius:3 };
+  rows.sort((a, b) => (order[a.status] - order[b.status]) || (catOrder[a.category] - catOrder[b.category]) || a.property.localeCompare(b.property));
+  return rows;
+}
+function tokenSig(d){ return d.varId ? "V:" + d.varId : (d.styleName ? "S:" + d.styleName : ""); }
+
+function makeRow(status, o, nw){
+  const src = nw || o;
+  return {
+    status, category: src.category,
+    property: `${src.node} · ${src.property}`,
+    was: o || null, now: nw || null,
+    wasVarId: o && o.varId, nowVarId: nw && nw.varId,
+  };
+}
+
+// convert descriptor to display token + value string, using resolved names
+function finalizeRow(r, nameMap){
+  const disp = (d, varId) => {
+    if (!d) return { token: null, value: "—" };
+    const token = varId ? (nameMap[varId] || shortId(varId)) : (d.styleName || null);
+    return { token, value: d.value };
+  };
+  const w = disp(r.was, r.wasVarId);
+  const n = disp(r.now, r.nowVarId);
+  const token =
+    r.status === "Custom" ? "(detached → custom)" :
+    (n.token || w.token || "(custom value)");
+  return {
+    status: r.status, category: r.category, property: r.property, token,
+    was: w.token ? `${w.token}${valueTail(w.value)}` : w.value,
+    now: n.token ? `${n.token}${valueTail(n.value)}` : n.value,
+    wasSwatch: swatchOf(r.was), nowSwatch: swatchOf(r.now),
+  };
+}
+function valueTail(v){ return v && v !== "—" && /px|%|#|\d/.test(v) ? `  (${v})` : ""; }
+function swatchOf(d){ return d && d.value && /^#/.test(d.value) ? d.value : null; }
+
+// ---------- render results grid in the panel ----------
+function render(meta){
+  $("summary").style.display = "flex";
+  $("sumHead").textContent = `Compared to ${meta.pastDate} and ${meta.todayDate}, changes made are:`;
+  $("sumCount").textContent = `${meta.rows.length} change${meta.rows.length === 1 ? "" : "s"} on “${meta.pageName}”`;
+  $("cAdded").textContent = meta.counts.Added; $("cModified").textContent = meta.counts.Modified;
+  $("cDeleted").textContent = meta.counts.Deleted; $("cCustom").textContent = meta.counts.Custom;
+
+  if (!meta.rows.length){ $("scroll").innerHTML = '<div class="empty">No token-level changes between the last saved version and today.</div>'; return; }
+
+  const head = ["Category","Token / Variable","Node · Property","Was","Now","Status"];
+  let html = "<table><thead><tr>" + head.map((h) => `<th>${h}</th>`).join("") + "</tr></thead><tbody>";
+  for (const r of meta.rows){
+    html += "<tr>" +
+      `<td class="cat">${cap(r.category)}</td>` +
+      `<td class="tok">${esc(r.token)}</td>` +
+      `<td>${esc(r.property)}</td>` +
+      `<td class="val">${sw(r.wasSwatch)}${esc(r.was)}</td>` +
+      `<td class="val">${sw(r.nowSwatch)}${esc(r.now)}</td>` +
+      `<td><span class="badge b-${r.status}">${r.status}</span></td>` +
+    "</tr>";
+  }
+  html += "</tbody></table>";
+  $("scroll").innerHTML = html;
+}
+
+// ---------- small utils ----------
+function tally(rows){ const c = { Added:0, Deleted:0, Modified:0, Custom:0 }; rows.forEach((r) => c[r.status]++); return c; }
+function hexOf(c, opacity){
+  const to = (x) => Math.round((x || 0) * 255).toString(16).padStart(2, "0");
+  const a = opacity != null ? opacity : (c.a != null ? c.a : 1);
+  const base = "#" + to(c.r) + to(c.g) + to(c.b);
+  return a < 1 ? base + " @" + Math.round(a * 100) + "%" : base;
+}
+function dayKey(iso){ return new Date(iso).toISOString().slice(0, 10); }
+function fmtDate(iso){ return new Date(iso).toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" }); }
+function round(n){ return Math.round(n * 100) / 100; }
+function shortId(id){ return id.replace("VariableID:", "var:").slice(0, 16) + "…"; }
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>]/g, (m) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[m])); }
+function sw(hex){ if (!hex) return ""; const clean = hex.split(" ")[0]; return `<span class="swatch" style="background:${esc(clean)}"></span>`; }
+</script>
+</body>
+</html>
