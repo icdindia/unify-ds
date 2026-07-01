@@ -13,7 +13,6 @@ figma.showUI(__html__, { width: 760, height: 620, themeColors: true });
 
 // ---- boot ----------------------------------------------------
 (async () => {
-  await figma.loadAllPagesAsync();
   const pages = figma.root.children.map((p) => ({ id: p.id, name: p.name }));
   const token = await figma.clientStorage.getAsync(TOKEN_KEY);
   figma.ui.postMessage({

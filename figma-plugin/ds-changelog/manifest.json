@@ -5,7 +5,6 @@
   "main": "code.js",
   "ui": "ui.html",
   "editorType": ["figma"],
-  "documentAccess": "dynamic-page",
   "networkAccess": {
     "allowedDomains": ["https://api.figma.com"],
     "reasoning": "Reads this file's version history and past snapshots via the Figma REST API to diff design-system tokens (colour, spacing, typography) between the last saved change and today."
