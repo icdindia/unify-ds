@@ -24,7 +24,12 @@ NOT direct page children; enumerate rows via the section, or by cover-frame link
 | 3 | Manager Views Layout and Table + pills Fixes (cover `17:82743`) | Dashboard (wide managers table) | `2116:103796` | 2104×1117 | 13-col table, corrected layout ("after") | data-table screen | ✅ lean |
 | 3 | Manager Views Layout and Table + pills Fixes | Dashboard (managers table) | `17:84488` | 1440×1117 | 12-col table, fake-sticky column bug ("before") + open filter dropdown | data-table screen | ✅ lean |
 
-Rows are appended as the user supplies each cover link. Counts: **3 flows · 11 screens** indexed so far.
+| 4 | automation preview + Details Page Tabs + Breadcrumbs (cover `17:82733`) | Dashboard (automation detail) | `17:82935` | 1440×1024 | Nav closed · canvas + node-inspector | automation detail page | ✅ lean |
+| 4 | automation preview + Details Page Tabs + Breadcrumbs | Dashboard (automation detail) | `539:72996` | 1440×1024 | = screen 1 + cursor annotation | automation detail page | ✅ lean |
+| 4 | automation preview + Details Page Tabs + Breadcrumbs | Dashboard (automation detail) | `2753:134795` | 1440×1024 | Nav open · canvas + inspector + Copilot | automation detail page | ✅ lean |
+| 4 | automation preview + Details Page Tabs + Breadcrumbs | Dashboard (automation detail) | `2753:134796` | 1440×1024 | Nav closed · inspector + Copilot | automation detail page | ✅ lean |
+
+Rows are appended as the user supplies each cover link. Counts: **4 flows · 15 screens** indexed so far.
 
 **Row 2 note:** the flow documents a *fix* — the managers-table Page Header toggle group in the
 source frames is broken (6 segments, 3 hidden ghost duplicates, all labels = placeholder "Text").

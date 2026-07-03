@@ -160,3 +160,72 @@ frame) — do NOT fake a frozen last column by manually offsetting its x.
 - ⚠ `Filter Bar` instance sized **2766px** wide in both screens (exceeds content width, search sits
   off-edge) — stale carried-over size; set Filter Bar to the content width.
 - Table section `Header` (Level 1) left `hidden=true` in both — fine to omit on these views.
+
+---
+
+## Recipe 4 — Automation detail / preview page · exemplars `17:82935` / `2753:134795`
+
+The "open one record and inspect it" page (an automation opened to Preview). Platform shell
+(Recipe 1) + a stacked header + a detail tab bar + a 2- or 3-pane body. This is the template for
+any builder/detail page, not just automations.
+
+### Header stack (top of content pane)
+1. **Breadcrumbs** — `Breadcrumb Bar`, variant **`Type=With workspace`**: `Workspace Name 1 ▾ ›
+   Automations › Lowes Latency Percentiles` (workspace dropdown + trail to current record). Riding
+   the same top strip on the right: AI-FDE button + status pill + small icon buttons (page chrome).
+2. **Title / status row** — record title + help `?` + a status `Pill squared` (e.g. "Undeployed
+   Changes", Warning/Terracotta). Sub-line: a `Toggle` (Running on/off) · `V1` · "Deployed 4 days
+   ago". Right cluster: `Button Neutral` Secondary "Open in Builder" (share icon) + `Button Brand`
+   Primary "Deploy".
+3. **Details Page Tabs** — an **underline horizontal tab bar** (Horizontal-tabs family; the flow
+   names it the "Details Page Tabs Component"). Tabs (authoritative from screen, Preview active):
+   **Preview · Runs · Versions · Insights · Alerts · Activity · Dependencies · Settings**.
+   *(Confirm with owner whether this is a dedicated `Details Page Tabs` component or the standard
+   DS `Horizontal tabs` — labels are certain, component name is not.)*
+
+### Body — 2 or 3 panes inside a `Container`
+- **Working area (left)** — the automation **canvas / graph**: a `Trigger` badge → vertical node
+  cards (`1. Callable Automation / Triggers when called`, `2. India Post / Check pincode`,
+  `3. Analytics by UnifyApps / Analytics Query`) joined by connector lines → `+` add-node. Top:
+  `Button Neutral` "Open in builder". Bottom-left: zoom cluster (+/−/fit, ID toggle, warning
+  count). Built from DS atoms (Button, Toggle group, connector frames) — the diagram wiring is
+  bespoke glue, not a DS canvas component.
+- **Node-inspector panel (center, ~480w)** — `Automation sidepane Header` instance (not yet
+  key-captured in `ds/figma-keys.md` — probe DS source before building). Contents: title
+  "📄 Documentation" + edit/close icons; stat trio via `Number+badge` (12 Steps / 11 Passed / 2
+  Failed, each with a `Pill squared` %); `Form Header` sections **Overview · How it works ·
+  Resources**; `Code Pill` (e.g. "soharport_request"); Apps Used `Pill squared` ("Gmail");
+  `Key Value Horizontal` rows — Tags (pill) · Owner (Avatar + date) · Edited.
+- **AI Copilot panel (right, ~372w, optional)** — see **Recipe 5**; docked on the far right when
+  the user opens Copilot (present on screens 3–4, absent on 1–2).
+
+### Pane configurations across the row
+Nav Closed/Closed/Open/Closed × Copilot absent/absent/present/present → content width flexes
+(1384 solo → 784–978 for the table area + 372 Copilot when open). Tab bar, breadcrumb and inspector
+content are identical across all 4 — this row characterises **panel/nav configs of one page**.
+
+### Source-frame defects (never reproduce)
+- ⚠ **Double Page Header** on screens 3 & 4: an outer `Page Header` stub stuck at h=28 (content
+  overflowing) plus a correctly-sized nested one — stale layer from adding the Copilot panel. Build
+  from the nested (784/978-wide) header only.
+- The 8× `Button Neutral` (Secondary sm) toolbar under the tabs on screens 1/2/4 carries no
+  icons/labels — placeholder canvas toolbar; supply real icons when building.
+
+---
+
+## Recipe 5 — AI Copilot panel (AI FDE) · exemplar within `2753:134795` (right pane)
+
+App-wide assistant panel, ~372w, docked on the right of any page (or standalone). Vertical stack:
+- **Header** — assistant identity + history/new-chat/close icons.
+- **Empty / intro state** — centered mark + "Hey, I'm AI FDE / I can help you do your best work."
+  + 3 **suggestion chips** (pill buttons, e.g. "Highlight observability issues", "Help me
+  understand recent deployments", "Sale assistant use-cases").
+- **Conversation state** — message list (user bubble right; assistant blocks left with steps /
+  sources / action row). *(An earlier HTML study of this panel lives in scratchpad; bubbles are
+  white with a hairline border, olive avatar.)*
+- **Composer** — `Copilot desktopsidepane_Input Box`: `+` · "Ask anything…" · send button, pill
+  (999) input on `bg-white`, hairline border.
+
+Instances `Automation sidepane Header` and `Copilot desktopsidepane_Input Box` are used here but not
+yet in `ds/figma-keys.md` — capture their keys from DS source `qT9zH1YYapGTwpJxwNEGzt` before a
+build.
