@@ -15,4 +15,15 @@ NOT direct page children; enumerate rows via the section, or by cover-frame link
 | 1 | New Platform Sidenav | Dashboard | `17:82819` | 1440×1024 | Open / Sub-menus collapsed | platform-shell · nav states | ✅ |
 | 1 | New Platform Sidenav | Dashboard | `17:82863` | 1440×1024 | Open / All sub-menus open | platform-shell · nav states | ✅ |
 
-Rows are appended as the user supplies each cover link. Counts: **1 flow · 4 screens** indexed so far.
+| 2 | Toggle Button Group fix in managers table (cover `17:82741`) | Dashboard (managers table) | `17:83978` | 1440×1024 | Table + broken toggle group; cursor annotation | data-table screen | ✅ lean |
+| 2 | Toggle Button Group fix in managers table | Dashboard (managers table) | `1294:158721` | 1440×1024 | Table base, no annotation | data-table screen | ✅ lean |
+| 2 | Toggle Button Group fix in managers table | Dashboard + Global Search | `1294:154337` | 1440×1024 | Search modal — recent | global-search modal | ✅ lean |
+| 2 | Toggle Button Group fix in managers table | Dashboard + Global Search | `1294:156199` | 1440×1024 | Search modal — populated/categorised | global-search modal | ✅ lean |
+| 2 | Toggle Button Group fix in managers table | Dashboard + Global Search | `1407:109666` | 1440×1024 | Search modal — empty state | global-search modal | ✅ lean |
+
+Rows are appended as the user supplies each cover link. Counts: **2 flows · 9 screens** indexed so far.
+
+**Row 2 note:** the flow documents a *fix* — the managers-table Page Header toggle group in the
+source frames is broken (6 segments, 3 hidden ghost duplicates, all labels = placeholder "Text").
+Recipes below record the **corrected** pattern, not the buggy source. The visible cross-screen
+change in this row is the Global Search modal (screens 3→5), not the toggle group.
