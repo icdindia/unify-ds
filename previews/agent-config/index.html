@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untitled Agent — Agent Detail · UnifyApps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Spectral:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- ================= Left rail nav ================= -->
+    <aside class="nav">
+      <div class="nav__content">
+        <div class="nav__top">
+          <div class="nav__header">
+            <img class="nav__logo" src="assets/logo.png" alt="Unify">
+          </div>
+          <nav class="nav__menu">
+            <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-agent.svg" alt=""></div></div>
+            <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/lc-card.svg" alt=""></div></div>
+            <div class="nav-item nav-item--active"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/structure.svg" alt=""></div></div>
+            <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/database-01.svg" alt=""></div></div>
+            <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/grid-plus.svg" alt=""></div></div>
+          </nav>
+        </div>
+        <div class="nav__footer">
+          <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/shield-01.svg" alt=""></div></div>
+          <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/layers-three-01.svg" alt=""></div></div>
+          <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/settings.svg" alt=""></div></div>
+          <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/bell-01.svg" alt=""></div></div>
+          <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-es-chat.svg" alt=""></div></div>
+          <div class="nav-avatar">
+            <div class="nav-avatar__pad">
+              <div class="nav-avatar__circle"><span>T</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= Main column ================= -->
+    <div class="main">
+
+      <!-- Page header -->
+      <header class="page-header">
+        <div class="breadcrumb-bar">
+          <div class="breadcrumb-bar__row">
+            <div class="breadcrumb-bar__inner">
+              <div class="breadcrumb-bar__left">
+                <div class="workspace-chip">
+                  <div class="workspace-chip__label">
+                    <img src="assets/icons/globe-01.svg" alt="">
+                    <span>Workspace Name 1</span>
+                  </div>
+                  <img src="assets/icons/chevron-down-sm.svg" alt="" width="12" height="12">
+                </div>
+                <div class="crumb-group">
+                  <div class="crumb-group__divider"></div>
+                  <div class="crumb-group__crumbs">
+                    <div class="crumb-group__item">
+                      <span class="crumb-group__link">Agents</span>
+                      <img class="crumb-group__slash" src="assets/icons/slash-divider.svg" alt="/">
+                    </div>
+                    <span class="crumb-group__current">Untitled Agent</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-fde">
+                <img class="ai-fde__ico" src="assets/icons/ai-star.svg" alt="">
+                <span>AI FDE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="header">
+          <div class="header__left">
+            <div class="header__idwrap">
+              <img class="header__avatar" src="assets/icons/agent-avatar.svg" alt="">
+              <div class="header__heading">
+                <p class="header__title">Untitled Agent</p>
+                <p class="header__subtitle">Created on 25 May 2026</p>
+              </div>
+            </div>
+          </div>
+          <div class="header__actions">
+            <button class="icon-btn"><img src="assets/icons/share-07.svg" alt="Share"></button>
+            <button class="icon-btn"><img src="assets/icons/settings-16.svg" alt="Settings"></button>
+            <button class="icon-btn icon-btn--bordered"><img src="assets/icons/dots-horizontal.svg" alt="More"></button>
+            <div class="toggle">
+              <div class="toggle__label"><span>l</span></div>
+              <div class="toggle__knob"><img src="assets/icons/play-solid.svg" alt=""></div>
+            </div>
+            <button class="btn-save"><span>Save</span></button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="search">
+        <div class="body-frame">
+          <div class="body-inner">
+            <div class="tabs-container">
+
+              <!-- Tabs -->
+              <div class="tabs">
+                <div class="tab tab--active"><span class="tab__label">Configuration</span></div>
+                <div class="tab"><span class="tab__label">Deployments</span></div>
+                <div class="tab"><span class="tab__label">Observability</span></div>
+              </div>
+
+              <!-- Working area (two columns) -->
+              <div class="container">
+                <div class="working-area">
+
+                  <!-- Left: Agent Detail form -->
+                  <section class="form-col">
+                    <div class="form-topbar"><p class="form-topbar__title">Agent Detail</p></div>
+                    <div class="form-body">
+                      <div class="form-sections">
+
+                        <!-- Instructions -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Instructions</span>
+                                  <img class="sec-head__hint" src="assets/icons/clock-15.svg" alt="">
+                                </div>
+                                <p class="sec-head__desc">Define your agent's role, tone, and behaviour</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--solid">
+                            <div class="list-item__content">
+                              <div class="list-item__text">
+                                <span class="list-item__label">Add instructions to tailor the response</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/pencil-02.svg" alt="Edit"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Knowledge sources -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Knowledge sources</span>
+                                  <img class="sec-head__hint" src="assets/icons/clock-15.svg" alt="">
+                                </div>
+                                <p class="sec-head__desc">Upload files the agent can reference when responding</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--dashed">
+                            <div class="list-item__content">
+                              <div class="list-item__icon"><img src="assets/icons/book-open-01.svg" alt=""></div>
+                              <div class="list-item__text">
+                                <span class="list-item__label">(PDF, PPTX, DOCX and more)</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/plus-circle.svg" alt="Add"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Tools -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Tools</span>
+                                  <img class="sec-head__hint" src="assets/icons/clock-15.svg" alt="">
+                                </div>
+                                <p class="sec-head__desc">Connect tools your agent can use — like sending emails or updating records</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--dashed">
+                            <div class="list-item__content">
+                              <div class="list-item__icon"><img src="assets/icons/multi-grid.svg" alt=""></div>
+                              <div class="list-item__text">
+                                <span class="list-item__label">Add Tools</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/plus-circle.svg" alt="Add"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Skills -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Skills</span>
+                                  <img class="sec-head__hint" src="assets/icons/clock-15.svg" alt="">
+                                </div>
+                                <p class="sec-head__desc">Extend what your agent can do with ready-made processing skills</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--dashed">
+                            <div class="list-item__content">
+                              <div class="list-item__icon"><img src="assets/icons/zip-folder.svg" alt=""></div>
+                              <div class="list-item__text">
+                                <span class="list-item__label">Add Skills</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/plus-circle.svg" alt="Add"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Capabilities -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Capabilities</span>
+                                </div>
+                                <p class="sec-head__desc">Enable built-in capabilities like web search or image generation</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--dashed">
+                            <div class="list-item__content">
+                              <div class="list-item__icon"><img src="assets/icons/ai-memory.svg" alt=""></div>
+                              <div class="list-item__text">
+                                <span class="list-item__label">Add Capabilities</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/plus-circle.svg" alt="Add"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Conversation Starters -->
+                        <div class="section">
+                          <div class="sec-head">
+                            <div class="sec-head__title-wrap">
+                              <div class="sec-head__featured">
+                                <div class="sec-head__featured-box"><img src="assets/icons/alert-circle.svg" alt=""></div>
+                              </div>
+                              <div class="sec-head__text">
+                                <div class="sec-head__title-row">
+                                  <span class="sec-head__title">Conversation Starters</span>
+                                </div>
+                                <p class="sec-head__desc">Add up to 3 prompts to help users get started quickly</p>
+                              </div>
+                            </div>
+                            <button class="sec-head__more"><img src="assets/icons/dots-vertical.svg" alt=""></button>
+                          </div>
+                          <div class="list-item list-item--solid">
+                            <div class="list-item__content">
+                              <div class="list-item__text">
+                                <span class="list-item__label list-item__label--placeholder">Start typing...</span>
+                              </div>
+                            </div>
+                            <div class="list-item__actions">
+                              <button class="list-item__btn"><img src="assets/icons/pencil-02.svg" alt="Edit"></button>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Right: Preview / Chat -->
+                  <section class="preview-col">
+                    <div class="form-topbar"><p class="form-topbar__title">Preview</p></div>
+                    <div class="chat">
+                      <div class="chat__body">
+                        <div class="chat__wrap">
+                          <div class="empty-state">
+                            <div class="empty-state__header">
+                              <img class="empty-state__avatar" src="assets/icons/agent-avatar.svg" alt="">
+                              <div class="empty-state__meta">
+                                <p class="empty-state__name">Sales Assistant</p>
+                                <p class="empty-state__desc">Helps users create workflows using simple text prompts</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat__scrollbar">
+                          <div class="chat__scrollbar-track">
+                            <div class="chat__scrollbar-thumb"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="chat__box">
+                        <div class="input-box">
+                          <div class="action-bar">
+                            <div class="action-bar__left">
+                              <button class="si-btn"><img src="assets/icons/chat-plus.svg" alt="Add"></button>
+                              <div class="action-bar__msg"><p>Ask anything…</p></div>
+                            </div>
+                            <div class="action-bar__right">
+                              <button class="si-btn si-btn--sq"><img src="assets/icons/face-happy.svg" alt=""></button>
+                              <button class="si-btn si-btn--sq"><img src="assets/icons/microphone-01.svg" alt=""></button>
+                              <button class="si-btn si-btn--sq"><img src="assets/icons/voice-mode.svg" alt=""></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

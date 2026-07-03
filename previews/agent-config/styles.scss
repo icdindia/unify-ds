@@ -1,0 +1,1099 @@
+// ===================================================================
+// UnifyApps — Agent Detail (Untitled Agent) — Dashboard 228:67807
+// Exact spec transcription from Figma. No values altered.
+// ===================================================================
+
+// ---- Design tokens (from ds/tokens + Figma variable defs) ----------
+$bg-primary:      #ffffff;
+$bg-secondary:    #f7f5f3;
+$bg-tertiary:     #f2f0ee;
+$bg-workspace:    #fbfaf9;
+$bg-quaternary-hover: #dbd6d1;
+$bg-solid-primary:  #151414;
+$bg-solid-tertiary: #6a6662;
+
+$navbar-bg:       #efebe5;
+
+$border-primary:   #dbd6d1;
+$border-secondary: #edebe8;
+$border-tertiary:  #f2f0ee;
+
+$text-primary:     #201f1e;   // text-primary-(900)
+$text-secondary:   #4a4745;   // text-secondary-(700)
+$text-tertiary:    #6a6662;   // text-tertiary-(600)
+$text-placeholder: #b4ada7;
+$text-white:       #ffffff;
+
+$brand-500:        #112d06;   // utility-brand-500
+$brand-50:         #e9efe8;
+$gray-50:          #f7f5f3;
+$gray-200:         #e5e5e5;
+$gray-300:         #dbd6d1;
+
+$alpha-black-05:   rgba(0,0,0,0.05);
+
+// spacing scale
+$sp-none: 0px;
+$sp-xxs:  2px;
+$sp-xs:   4px;
+$sp-sm:   6px;
+$sp-md:   8px;
+$sp-lg:   12px;
+$sp-xl:   16px;
+$sp-2xl:  20px;
+$sp-24:   24px;
+$sp-32:   32px;
+$sp-40:   40px;
+
+// radius scale
+$r-xs:   4px;
+$r-sm:   6px;
+$r-md:   8px;
+$r-btn-sm: 6px;
+$r-btn-md: 8px;
+$r-4xl:  12px;
+$r-full: 9999px;
+
+// fonts
+$font-body:    'Geist', 'Inter', system-ui, sans-serif;
+$font-display: 'Spectral', Georgia, serif;
+$font-code:    'JetBrains Mono', ui-monospace, monospace;
+
+$shadow-sm: 0 1px 2px 0 rgba(219,214,209,0.5), 0 1px 3px 0 rgba(219,214,209,0.5);
+
+// ---- Reset --------------------------------------------------------
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: $font-body;
+  background: #e9e6e1;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+img { display: block; }
+
+// ===================================================================
+// Frame: Dashboard — 1440 x 1024
+// ===================================================================
+.dashboard {
+  width: 1440px;
+  height: 1024px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: $bg-primary;
+  border-radius: $r-md;
+  overflow: hidden;
+}
+
+// -------------------------------------------------------------------
+// Left rail: New_Platform Navigation — 56 x 1024
+// -------------------------------------------------------------------
+.nav {
+  width: 56px;
+  height: 1024px;
+  flex: none;
+  background: $navbar-bg;
+  border-right: 1px solid $border-secondary;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  &__content {
+    flex: 1 0 0;
+    height: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $sp-md;
+    padding-top: 15px;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $sp-lg;
+    padding: 0 $sp-lg;
+  }
+
+  &__logo {
+    width: 32px;
+    height: 32px;
+    flex: none;
+  }
+
+  &__menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $sp-md;
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $sp-md;
+    padding-top: $sp-md;
+  }
+}
+
+// nav menu unit — 36 tall, full width, px 10
+.nav-item {
+  width: 100%;
+  height: 36px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  overflow: hidden;
+
+  &__content {
+    width: 36px;
+    height: 100%;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $sp-md;
+    padding: 0 $sp-md;
+    border-radius: $r-md;
+  }
+
+  &--active &__content { background: $alpha-black-05; }
+
+  &__icon { width: 18px; height: 18px; flex: none; }
+}
+
+// avatar footer block — 60 tall, top border
+.nav-avatar {
+  width: 100%;
+  height: 60px;
+  flex: none;
+  border-top: 1px solid $border-primary;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  &__pad {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $sp-lg;
+  }
+
+  &__circle {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: $r-full;
+    background: $gray-300;
+    position: relative;
+
+    span {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 10px);
+      transform: translateX(-50%);
+      width: 32px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 20px;
+      color: $text-tertiary;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Right of nav: main column — 1384 wide
+// -------------------------------------------------------------------
+.main {
+  width: 1384px;
+  height: 1024px;
+  flex: none;
+  background: $bg-workspace;
+  display: flex;
+  flex-direction: column;
+}
+
+// ===================================================================
+// Page Header — 1384 x 86
+// ===================================================================
+.page-header {
+  width: 100%;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+// -- Breadcrumb bar (pt xs) -----------------------------------------
+.breadcrumb-bar {
+  width: 100%;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: $sp-xs;
+
+  &__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $sp-xl 0 $sp-lg;
+  }
+
+  &__inner {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+    padding: $sp-xxs 0;
+  }
+}
+
+.workspace-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-xs;
+  padding: $sp-xs $sp-xxs $sp-xs $sp-xs;
+  border-radius: $r-xs;
+  overflow: hidden;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: $sp-xxs;
+  }
+
+  img { width: 12px; height: 12px; flex: none; }
+
+  span {
+    padding: 0 $sp-xxs;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+}
+
+.crumb-group {
+  display: flex;
+  align-items: center;
+  gap: $sp-lg;
+  height: 100%;
+
+  &__divider {
+    width: 0;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: $border-primary;
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__crumbs {
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+    height: 100%;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+  }
+
+  &__link {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    color: $text-tertiary;
+    white-space: nowrap;
+  }
+
+  &__slash { width: 10px; height: 10px; flex: none; }
+
+  &__current {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+}
+
+.ai-fde {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-xxs;
+  justify-content: center;
+  padding: $sp-xxs $sp-xs;
+  border-radius: $r-xs;
+  background: $bg-solid-primary;
+  overflow: hidden;
+
+  &__ico { width: 12px; height: 12px; flex: none; }
+
+  span {
+    padding: 0 $sp-xxs;
+    font-family: $font-code;
+    font-size: 11px;
+    line-height: 12px;
+    color: $text-white;
+    white-space: nowrap;
+  }
+}
+
+// -- Header (title row) — pt md, px xl ------------------------------
+.header {
+  width: 100%;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: $sp-lg;
+  padding: $sp-md $sp-xl 0;
+
+  &__left {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__idwrap {
+    display: flex;
+    align-items: center;
+    gap: $sp-xl;
+  }
+
+  &__avatar { width: 48px; height: 48px; flex: none; }
+
+  &__heading {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: $sp-xxs;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: -0.48px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+
+  &__subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: $text-secondary;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $sp-lg;
+  }
+}
+
+// icon-only brand buttons in header (p md)
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $sp-md;
+  border-radius: $r-btn-md;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  img { width: 16px; height: 16px; flex: none; }
+
+  &--bordered { border: 1px solid $border-secondary; }
+}
+
+// play/interactive toggle pill
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: $sp-xxs;
+  border-radius: $r-full;
+  background: $bg-quaternary-hover;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $sp-xxs $sp-sm;
+    border-radius: $r-full;
+
+    span { opacity: 0; font-size: 14px; line-height: 20px; }
+  }
+
+  &__knob {
+    width: 24px;
+    height: 24px;
+    min-height: 20px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $sp-md $sp-xs;
+    border-radius: $r-full;
+    background: $bg-solid-tertiary;
+
+    img { width: 14px; height: 14px; }
+  }
+}
+
+// Save button (brand primary)
+.btn-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-xxs;
+  min-width: 72px;
+  padding: $sp-sm $sp-lg;
+  border-radius: $r-btn-md;
+  background: $brand-500;
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+
+  span {
+    padding: 0 $sp-xxs;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #fff;
+    white-space: nowrap;
+  }
+}
+
+// ===================================================================
+// Search / body region — 1384 x 938 (pt 20)
+// ===================================================================
+.search {
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: $sp-2xl;
+  overflow: hidden;
+}
+
+.body-frame {          // Frame 2147265242 — gap 8
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-md;
+}
+
+.body-inner {          // Frame 2147265223 — px 16, gap 24
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-24;
+  padding: 0 $sp-xl;
+}
+
+.tabs-container {      // Frame 2147265274 — gap 12
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-lg;
+}
+
+// -- Horizontal tabs — 28 tall -------------------------------------
+.tabs {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: $sp-md;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-xxs;
+  min-width: 68px;
+  padding: $sp-sm $sp-md;
+  border-radius: $r-btn-sm;
+  overflow: hidden;
+  cursor: pointer;
+  background: $bg-tertiary;
+  border: 1px solid transparent;
+
+  &__label {
+    padding: 0 $sp-xxs;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: $text-tertiary;
+    white-space: nowrap;
+  }
+
+  &--active {
+    background: $bg-primary;
+    border-color: $border-secondary;
+  }
+}
+
+// -- Container (holds the two working-area columns) -----------------
+.container {           // Container — pb 16, gap 12, clips
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  padding-bottom: $sp-xl;
+  overflow: hidden;
+}
+
+.working-area {        // 1352 x 862 — white card, border, radius 12
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  background: $bg-primary;
+  border: 1px solid $border-secondary;
+  border-radius: $r-4xl;
+  overflow: hidden;
+}
+
+// ===================================================================
+// Left column — Agent Detail form — 720 wide
+// ===================================================================
+.form-col {
+  width: 720px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $bg-workspace;
+  overflow: hidden;
+}
+
+// Form header bar (Agent Detail / Preview) — min-h 48, pt 6 pb 8 px 12
+.form-topbar {
+  width: 100%;
+  flex: none;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $sp-sm $sp-lg $sp-md;
+  background: $bg-secondary;
+
+  &__title {
+    font-family: $font-display;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 26px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+}
+
+// scroll body — p 20, gap 32
+.form-body {
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $sp-2xl;
+  gap: $sp-32;
+  overflow-y: auto;
+  background: $bg-workspace;
+}
+
+.form-sections {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-32;
+}
+
+// each section = header (min-h 48) + gap 12 + list item
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-lg;
+}
+
+// Section form-header — min-h 48, pt 6 pb 8 px 12
+.sec-head {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: $sp-md;
+  padding: $sp-sm $sp-lg $sp-md;
+
+  &__title-wrap {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: $sp-lg;
+  }
+
+  // featured icon 32, radius 6, gray-50 bg (top pad 2)
+  &__featured {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding-top: $sp-xxs;
+  }
+
+  &__featured-box {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: $r-sm;
+    background: $gray-50;
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__text {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &__title-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: $sp-sm;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+
+  &__hint { width: 15px; height: 15px; flex: none; }
+
+  &__desc {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: $text-tertiary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // trailing more-button (p 6, radius 6)
+  &__more {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $sp-sm;
+    border-radius: $r-btn-sm;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+
+    img { width: 16px; height: 16px; }
+  }
+}
+
+// List item — 60 tall, p 12, radius 12, gap 4
+.list-item {
+  width: 100%;
+  height: 60px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: $sp-xs;
+  padding: $sp-lg;
+  border-radius: $r-4xl;
+  background: $bg-primary;
+  overflow: hidden;
+
+  &--solid   { border: 1px solid $border-tertiary; }
+  &--dashed  { border: 1px dashed $border-primary; }
+
+  &__content {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: $sp-lg;
+  }
+
+  // 32 featured icon holding a 24 glyph (dashed rows)
+  &__icon {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: $r-md;
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__text {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $sp-xs;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $text-tertiary;
+    white-space: nowrap;
+
+    &--placeholder { color: $text-placeholder; }
+  }
+
+  &__actions {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $sp-xs;
+  }
+
+  // small icon button 28, 20 glyph
+  &__btn {
+    width: 28px;
+    height: 28px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $r-sm;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    overflow: hidden;
+
+    img { width: 20px; height: 20px; }
+  }
+}
+
+// ===================================================================
+// Right column — Preview / Chat — 632 wide
+// ===================================================================
+.preview-col {
+  width: 632px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: $bg-primary;
+  border-left: 1px solid $border-secondary;
+  position: relative;
+  overflow: hidden;
+
+  // reuse form-topbar for the "Preview" header
+  .form-topbar { z-index: 2; }
+}
+
+.chat {
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.chat__body {
+  width: 100%;
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+// message wrap — px 16 py 20, centers empty state
+.chat__wrap {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $sp-2xl $sp-xl;
+}
+
+// Empty state — 500 wide, 378 tall, gap 24
+.empty-state {
+  width: 500px;
+  height: 378px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-24;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $sp-lg;
+  }
+
+  &__avatar { width: 40px; height: 40px; flex: none; }
+
+  &__meta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+
+  &__desc {
+    max-width: 380px;
+    width: 100%;
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $text-tertiary;
+    text-align: center;
+  }
+}
+
+// scroll bar overlay — 16 wide, top-right, h 408
+.chat__scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 408px;
+  display: flex;
+  align-items: flex-start;
+  padding: 4px;
+
+  &-track {
+    width: 8px;
+    height: 100%;
+    border-radius: $r-md;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-thumb {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 50%;
+    border-radius: 5px;
+    background: $gray-200;
+    opacity: 0.6;
+  }
+}
+
+// Chat box — absolute bottom, 612 wide, 104 tall, p 16
+.chat__box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 612px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: $sp-xl;
+}
+
+// Input pill — full width, radius full, py 8, border-primary
+.input-box {
+  width: 100%;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sp-md;
+  padding: $sp-md 0;
+  background: $bg-primary;
+  border: 1px solid $border-primary;
+  border-radius: $r-full;
+  overflow: hidden;
+}
+
+// Action bar — px 12, gap 4
+.action-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $sp-xs;
+  padding: 0 $sp-lg;
+
+  &__left {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__msg {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+    padding: 0 $sp-xs;
+    overflow: hidden;
+
+    p {
+      flex: 1 0 0;
+      min-width: 0;
+      font-family: $font-display;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: $text-placeholder;
+    }
+  }
+
+  &__right {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $sp-xs;
+  }
+}
+
+// small icon button 28 / 20 glyph (chat)
+.si-btn {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $r-full;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+
+  &--sq { border-radius: $r-sm; }
+
+  img { width: 20px; height: 20px; }
+}
