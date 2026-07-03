@@ -22,7 +22,7 @@
           <nav class="nav__menu">
             <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-agent.svg" alt=""></div></div>
             <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/lc-card.svg" alt=""></div></div>
-            <div class="nav-item nav-item--active"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            <div class="nav-item nav-item--active is-selected"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
             <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/structure.svg" alt=""></div></div>
             <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/database-01.svg" alt=""></div></div>
             <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/grid-plus.svg" alt=""></div></div>
@@ -354,5 +354,181 @@
 
     </div>
   </div>
+
+  <!-- ================================================================
+       NAVIGATION — STATES  (from Unify2026 DS)
+       45945:21244 (Open/Closed) · 60766:106618 (Hover/Selected/Floating)
+       ================================================================ -->
+  <section class="nav-states">
+    <h1 class="nav-states__title">Navigation — States</h1>
+
+    <div class="nav-states__row">
+
+      <!-- ---------- OPEN / EXPANDED ---------- -->
+      <div class="nav-states__col">
+        <span class="nav-states__cap">Open (expanded)</span>
+        <div class="nav-states__frame">
+          <aside class="navx">
+            <div class="navx__content">
+              <div class="navx__nav">
+                <div class="navx__header">
+                  <div class="navx__logo">
+                    <img src="assets/logo.png" alt="Unify">
+                    <span>UnifyApps</span>
+                  </div>
+                  <button class="navx__collapse" type="button" aria-label="Collapse">
+                    <img src="assets/icons/layout-left.svg" alt="">
+                  </button>
+                </div>
+                <div class="navx__list">
+                  <div class="navx-item is-selected"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/ai-agent.svg" alt=""><span class="navx-item__label">AI Agents</span></div></div>
+                  <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/lc-card.svg" alt=""><span class="navx-item__label">AI Applications</span></div></div>
+                  <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/zap.svg" alt=""><span class="navx-item__label">AI Workflows</span></div></div>
+                  <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/structure.svg" alt=""><span class="navx-item__label">AI Ontology &amp; Data</span></div></div>
+                  <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/database-01.svg" alt=""><span class="navx-item__label">Enterprise Resources</span></div></div>
+                  <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/grid-plus.svg" alt=""><span class="navx-item__label">Enterprise Systems</span></div></div>
+                </div>
+              </div>
+              <div class="navx__footer">
+                <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/shield-01.svg" alt=""><span class="navx-item__label">AI Governance</span></div></div>
+                <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/layers-three-01.svg" alt=""><span class="navx-item__label">Platform Library</span></div></div>
+                <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/settings.svg" alt=""><span class="navx-item__label">Settings</span></div></div>
+                <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/bell-01.svg" alt=""><span class="navx-item__label">Notifications</span></div></div>
+                <div class="navx-item"><div class="navx-item__content"><img class="navx-item__icon" src="assets/icons/ai-es-chat.svg" alt=""><span class="navx-item__label">Help</span></div></div>
+                <div class="navx-user">
+                  <div class="navx-user__avatar"></div>
+                  <div class="navx-user__text">
+                    <span class="navx-user__name">Tommy Hilfiger</span>
+                    <span class="navx-user__role">QA</span>
+                  </div>
+                  <img class="navx-user__chev" src="assets/icons/chevron-right-sm.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- ---------- CLOSED (collapsed rail) ---------- -->
+      <div class="nav-states__col">
+        <span class="nav-states__cap">Closed (collapsed)</span>
+        <div class="nav-states__frame">
+          <aside class="nav">
+            <div class="nav__content">
+              <div class="nav__top">
+                <div class="nav__header"><img class="nav__logo" src="assets/logo.png" alt="Unify"></div>
+                <nav class="nav__menu">
+                  <div class="nav-item is-selected"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-agent.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/lc-card.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/structure.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/database-01.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/grid-plus.svg" alt=""></div></div>
+                </nav>
+              </div>
+              <div class="nav__footer">
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/shield-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/layers-three-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/settings.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/bell-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-es-chat.svg" alt=""></div></div>
+                <div class="nav-avatar"><div class="nav-avatar__pad"><div class="nav-avatar__circle"><span>T</span></div></div></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- ---------- FLOATING (collapsed rail + flyout) ---------- -->
+      <div class="nav-states__col">
+        <span class="nav-states__cap">Floating (flyout on collapsed rail)</span>
+        <div class="nav-states__frame nav-states__floating">
+          <aside class="nav">
+            <div class="nav__content">
+              <div class="nav__top">
+                <div class="nav__header"><img class="nav__logo" src="assets/logo.png" alt="Unify"></div>
+                <nav class="nav__menu">
+                  <div class="nav-item is-selected"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-agent.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/lc-card.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/structure.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/database-01.svg" alt=""></div></div>
+                  <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/grid-plus.svg" alt=""></div></div>
+                </nav>
+              </div>
+              <div class="nav__footer">
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/shield-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/layers-three-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/settings.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/bell-01.svg" alt=""></div></div>
+                <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/ai-es-chat.svg" alt=""></div></div>
+                <div class="nav-avatar"><div class="nav-avatar__pad"><div class="nav-avatar__circle"><span>T</span></div></div></div>
+              </div>
+            </div>
+          </aside>
+          <div class="nav-states__flyout-pos">
+            <div class="flyout">
+              <div class="flyout__header">AI Agents</div>
+              <div class="flyout__item flyout__item--current">Agents</div>
+              <div class="flyout__item">Teams</div>
+              <div class="flyout__item">Copilot</div>
+              <div class="flyout__item">MCP Servers</div>
+              <div class="flyout__item">A2A Servers</div>
+              <div class="flyout__item">Data Catalog &amp; Lineage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---------- Interaction-state legend ---------- -->
+    <div class="nav-states__col">
+      <span class="nav-states__cap">Menu unit — interaction states (collapsed)</span>
+      <div class="nav-states__legend">
+        <div class="nav-states__col">
+          <div class="nav" style="height:auto;width:56px;padding:8px 0;">
+            <div class="nav__content"><nav class="nav__menu">
+              <div class="nav-item"><div class="nav-item__content"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            </nav></div>
+          </div>
+          <span class="nav-states__cap">Default</span>
+        </div>
+        <div class="nav-states__col">
+          <div class="nav" style="height:auto;width:56px;padding:8px 0;">
+            <div class="nav__content"><nav class="nav__menu">
+              <div class="nav-item"><div class="nav-item__content" style="background:rgba(0,0,0,.05)"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            </nav></div>
+          </div>
+          <span class="nav-states__cap">Hover</span>
+        </div>
+        <div class="nav-states__col">
+          <div class="nav" style="height:auto;width:56px;padding:8px 0;">
+            <div class="nav__content"><nav class="nav__menu">
+              <div class="nav-item"><div class="nav-item__content" style="background:#f2f0ee"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            </nav></div>
+          </div>
+          <span class="nav-states__cap">Click-down</span>
+        </div>
+        <div class="nav-states__col">
+          <div class="nav" style="height:auto;width:56px;padding:8px 0;">
+            <div class="nav__content"><nav class="nav__menu">
+              <div class="nav-item"><div class="nav-item__content" style="background:rgba(0,0,0,.05)"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            </nav></div>
+          </div>
+          <span class="nav-states__cap">Selected</span>
+        </div>
+        <div class="nav-states__col">
+          <div class="nav" style="height:auto;width:56px;padding:8px 0;">
+            <div class="nav__content"><nav class="nav__menu">
+              <div class="nav-item"><div class="nav-item__content" style="background:rgba(0,0,0,.10)"><img class="nav-item__icon" src="assets/icons/zap.svg" alt=""></div></div>
+            </nav></div>
+          </div>
+          <span class="nav-states__cap">Selected + hover</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
 </body>
 </html>

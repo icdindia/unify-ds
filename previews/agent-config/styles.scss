@@ -72,8 +72,11 @@ body {
   color: $text-primary;
   -webkit-font-smoothing: antialiased;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 40px 0;
   min-height: 100vh;
 }
 
@@ -85,6 +88,7 @@ img { display: block; }
 .dashboard {
   width: 1440px;
   height: 1024px;
+  flex: none;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -1096,4 +1100,303 @@ img { display: block; }
   &--sq { border-radius: $r-sm; }
 
   img { width: 20px; height: 20px; }
+}
+
+// ===================================================================
+// NAVIGATION — STATES  (DS: Base_Platform Nav Menu Unit)
+// Source: Unify2026 DS  qT9zH1YYapGTwpJxwNEGzt
+//   • 45945:21244  → Open / Closed states
+//   • 60766:106618 → Hover, Selected, Floating (flyout) states
+// Exact variant fills (no values altered):
+//   Default/No .............. transparent
+//   Hover/No ................ rgba(0,0,0,.05)      (alpha-black-05)
+//   Focus/No (click-down) ... #f2f0ee              (bg-tertiary)
+//   Selected (Default/Yes) .. rgba(0,0,0,.05)
+//   Selected + Hover ........ rgba(0,0,0,.10)      (alpha-black-10)
+// ===================================================================
+$alpha-black-10: rgba(0,0,0,0.10);
+
+// ---- Interaction states shared by collapsed rail + expanded nav ----
+@mixin nav-unit-states($target) {
+  #{$target} { transition: background .12s ease; }
+  // Hover — not selected
+  &:not(.is-selected):hover #{$target}      { background: $alpha-black-05; }
+  // Click-down / pressed (Focus) — not selected
+  &:not(.is-selected):active #{$target}     { background: $bg-tertiary; }
+  // Selected (default)
+  &.is-selected #{$target}                  { background: $alpha-black-05; }
+  // Selected + hover
+  &.is-selected:hover #{$target}            { background: $alpha-black-10; }
+  // Selected + click-down (Focus)
+  &.is-selected:active #{$target}           { background: $bg-tertiary; }
+}
+
+// apply to the existing collapsed rail unit (default look unchanged)
+.nav-item {
+  cursor: pointer;
+  &.nav-item--active { }              // keep legacy selected class working
+  @include nav-unit-states('.nav-item__content');
+  // legacy --active mirrors .is-selected
+  &.nav-item--active .nav-item__content        { background: $alpha-black-05; }
+  &.nav-item--active:hover .nav-item__content  { background: $alpha-black-10; }
+  &.nav-item--active:active .nav-item__content { background: $bg-tertiary; }
+}
+
+// ===================================================================
+// OPEN / EXPANDED nav — 250 wide   (symbol 45945:21245)
+// ===================================================================
+.navx {
+  width: 250px;
+  height: 800px;
+  flex: none;
+  background: $navbar-bg;
+  border-right: 1px solid $border-secondary;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  &__content { flex: 1 0 0; height: 100%; min-width: 0; display: flex; flex-direction: column; }
+
+  // Navigation block — pad 16 0 16 0, gap 8
+  &__nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $sp-md;
+    padding: $sp-xl 0;
+  }
+
+  // Header — h32, pad 0 8 0 12, gap 12
+  &__header {
+    width: 100%;
+    height: 32px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: $sp-lg;
+    padding: 0 $sp-md 0 $sp-lg;
+  }
+
+  &__logo {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: $sp-md;
+    img { width: 32px; height: 32px; flex: none; }
+    span {
+      font-family: $font-display;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: -0.02em;
+      color: $text-primary;
+      white-space: nowrap;
+    }
+  }
+
+  // collapse toggle button — 32x32 neutral, radius 8
+  &__collapse {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $sp-md;
+    border-radius: $r-md;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background .12s ease;
+    &:hover  { background: $alpha-black-05; }
+    &:active { background: $bg-tertiary; }
+    img { width: 16px; height: 16px; }
+  }
+
+  &__list { width: 100%; display: flex; flex-direction: column; gap: $sp-md; }
+
+  // Footer
+  &__footer {
+    width: 100%;
+    margin-top: auto;
+    background: $navbar-bg;
+    display: flex;
+    flex-direction: column;
+    gap: $sp-md;
+    padding-top: $sp-md;
+  }
+}
+
+// Expanded menu unit — 250 wide, pad 0 10; content 230, pad 0 8 0 9, radius 8
+.navx-item {
+  width: 100%;
+  height: 36px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  cursor: pointer;
+
+  &__content {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: $sp-lg;                 // icon → label gap 12
+    padding: 0 $sp-md 0 9px;
+    border-radius: $r-md;
+    overflow: hidden;
+  }
+
+  &__icon { width: 18px; height: 18px; flex: none; }
+
+  &__label {
+    flex: 1 0 0;
+    min-width: 0;
+    font-family: $font-body;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: $text-secondary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @include nav-unit-states('.navx-item__content');
+}
+
+// Expanded user row — 250, pad 12 16 12 12, gap 8, top border
+.navx-user {
+  width: 100%;
+  height: 60px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: $sp-md;
+  padding: $sp-lg $sp-xl $sp-lg $sp-lg;
+  border-top: 1px solid $border-primary;
+  cursor: pointer;
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: $r-full;
+    background: $gray-300;
+  }
+
+  &__text { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; }
+  &__name {
+    font-family: $font-body;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: $text-secondary;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  &__role {
+    font-family: $font-body;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $text-tertiary;
+  }
+  &__chev { width: 16px; height: 16px; flex: none; }
+}
+
+// ===================================================================
+// FLOATING flyout list — 185 wide  (60623:101744)
+//   fill #fbfaf9 · radius 12 · border 1px #f2f0ee · pad 16 8 12 8 · gap 4
+//   shadow: 0 2 4 -2 #edebe8 , 0 4 8 -2 #edebe8
+// ===================================================================
+.flyout {
+  width: 185px;
+  flex: none;
+  background: $bg-workspace;
+  border: 1px solid $border-tertiary;
+  border-radius: $r-4xl;
+  padding: $sp-xl $sp-md $sp-lg $sp-md;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-xs;
+  box-shadow: 0 2px 4px -2px $border-secondary, 0 4px 8px -2px $border-secondary;
+
+  &__header {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 2px $sp-md;
+    font-family: $font-body;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: $text-placeholder;
+  }
+
+  // sub-menu unit — h28, pad 2 0
+  &__item {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 2px $sp-md;
+    border-radius: $r-sm;
+    font-family: $font-body;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: $text-tertiary;
+    cursor: pointer;
+    transition: background .12s ease;
+
+    &--current { color: $text-secondary; }
+    &:hover    { background: $alpha-black-05; }
+    &:active   { background: $bg-tertiary; }
+    &.is-selected        { background: $alpha-black-05; color: $text-secondary; }
+    &.is-selected:hover  { background: $alpha-black-10; }
+  }
+}
+
+// ===================================================================
+// States showcase wrapper (presentation only — hosts the two DS frames)
+// ===================================================================
+.nav-states {
+  width: 1440px;
+  flex: none;
+  background: $bg-primary;
+  border-radius: $r-md;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    color: $text-primary;
+  }
+  &__row { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
+  &__col { display: flex; flex-direction: column; gap: 12px; }
+  &__cap {
+    font-family: $font-body;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: $text-tertiary;
+  }
+  // frame that mimics the DS artboard (rail height trimmed for preview)
+  &__frame { display: flex; align-items: flex-start; position: relative; }
+  .navx, .nav { height: 800px; }
+  // floating example: rail + popover offset beside the AI-Agents row
+  &__floating { position: relative; }
+  &__flyout-pos { position: absolute; left: 64px; top: 108px; }
+  // state legend swatch row
+  &__legend { display: flex; gap: 24px; align-items: flex-start; }
 }
