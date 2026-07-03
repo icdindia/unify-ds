@@ -21,7 +21,10 @@ NOT direct page children; enumerate rows via the section, or by cover-frame link
 | 2 | Toggle Button Group fix in managers table | Dashboard + Global Search | `1294:156199` | 1440×1024 | Search modal — populated/categorised | global-search modal | ✅ lean |
 | 2 | Toggle Button Group fix in managers table | Dashboard + Global Search | `1407:109666` | 1440×1024 | Search modal — empty state | global-search modal | ✅ lean |
 
-Rows are appended as the user supplies each cover link. Counts: **2 flows · 9 screens** indexed so far.
+| 3 | Manager Views Layout and Table + pills Fixes (cover `17:82743`) | Dashboard (wide managers table) | `2116:103796` | 2104×1117 | 13-col table, corrected layout ("after") | data-table screen | ✅ lean |
+| 3 | Manager Views Layout and Table + pills Fixes | Dashboard (managers table) | `17:84488` | 1440×1117 | 12-col table, fake-sticky column bug ("before") + open filter dropdown | data-table screen | ✅ lean |
+
+Rows are appended as the user supplies each cover link. Counts: **3 flows · 11 screens** indexed so far.
 
 **Row 2 note:** the flow documents a *fix* — the managers-table Page Header toggle group in the
 source frames is broken (6 segments, 3 hidden ghost duplicates, all labels = placeholder "Text").

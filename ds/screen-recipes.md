@@ -121,3 +121,42 @@ of the viewport, over any page. Three states share one structure:
     (240×140) — "no results".
 - All rows/tags/empty-state are DS instances; the modal frame + `Command bar` list wrapper are the
   only container glue.
+
+---
+
+## Recipe 2 addenda — wide managers table (many pill columns) · exemplar `2116:103796`
+
+Row 3 ("Manager Views Layout and Table + pills Fixes") extends Recipe 2. Same shell + table
+assembly; new pieces and rules:
+
+### Extra `Table cell` styles (add to the column vocabulary)
+- **Toggle** — inline on/off switch per row (col width ~48). First data column after checkbox on
+  the wide view.
+- **Icon with text and badge** — one cell holding icon + text + a `Pill squared` (e.g. a Success
+  pill "20%"). Use when a metric needs an inline status pill.
+- (Recipe 2 already covers Checkbox · Text(Lead=Yes/No) · Badge single · Avatar-with-text ·
+  Action three-dot.)
+
+### Pills / category columns
+Category columns (Status, Type, Shared With, Tags, Trigger, Version…) render each value as a
+`Pill squared`, `Type=Pill color`, `Size=sm`, icon optional. **Colour = decorative per-tag
+identity** (user-confirmed) — pick a distinct `Pill color` variant per value for visual
+separation; there is no fixed value→colour map. Observed palette vocabulary: **Pigeon Blue ·
+Violet · Lime · Gray · Success**. Version column keeps the green `text-to-*` / grey `AI generated`
+convention from earlier tables. All pill fills bind to library colour variables — never raw hex.
+
+### Header variant for drill-down table views
+A manager **detail / back-nav** table uses Page Header `Type=With Back Button` (not `With Toggle`).
+`With Toggle` = top-level list; `With Back Button` = drilled-in view.
+
+### Wide-table layout rule
+When columns exceed ~1440, widen the **content pane** (exemplar runs 2048px content in a 2104px
+frame) — do NOT fake a frozen last column by manually offsetting its x.
+
+### Source-frame defects (never reproduce)
+- ⚠ **Fake-sticky action column** (`17:84488`): the Action three-dot column was hand-moved to
+  x=1294, overlapping a badge column and shoving 3 columns off-frame. This is the bug Row 3 fixes —
+  use proper sequential column layout on a wider pane instead.
+- ⚠ `Filter Bar` instance sized **2766px** wide in both screens (exceeds content width, search sits
+  off-edge) — stale carried-over size; set Filter Bar to the content width.
+- Table section `Header` (Level 1) left `hidden=true` in both — fine to omit on these views.
