@@ -1,0 +1,509 @@
+// ===================================================================
+// UnifyApps — Governance alert side-panel — "Approve high-risk tools"
+// 480 × 800 · warm-editorial redesign of the alert detail drawer.
+// Every value bound to a DS token (ds/tokens/*). No off-token values.
+// ===================================================================
+
+// ---- Tokens (Light mode, from ds/tokens) --------------------------
+$bg-primary:      #ffffff;                 // bg-white / bg-primary
+$bg-secondary:    #f7f5f3;                 // gray-50
+$bg-tertiary:     #f2f0ee;                 // gray-100
+
+$border-primary:   #dbd6d1;                // gray-300
+$border-secondary: #edebe8;                // gray-200
+$border-tertiary:  #f2f0ee;                // gray-100
+
+$text-primary:     #201f1e;                // text-primary (900)
+$text-secondary:   #4a4745;                // text-secondary (700)
+$text-tertiary:    #6a6662;                // text-tertiary (600)
+$text-placeholder: #b4ada7;                // text-placeholder
+$text-white:       #ffffff;
+
+$brand-500:        #112d06;                // bg-brand-solid / primary CTA
+$brand-400:        #364a3b;                // brand hover
+$brand-200:        #87938a;                // ring for calm flow nodes
+
+$warn-25:          #fdf0e3;                // warning-25
+$warn-100:         #f9d6b3;
+$warn-200:         #f7c797;
+$warn-500:         #f09437;                // warning-500 — Medium severity dot
+$warn-600:         #d37c25;                // warning-600
+$warn-700:         #9d5206;                // warning-700 — enforcement text (AA on warn-25)
+
+$risk-error:       #7a1710;                // error-700 — the 1,204 magnitude
+
+// ---- Spacing / radius ---------------------------------------------
+$sp-xxs: 2px;  $sp-xs: 4px;  $sp-sm: 6px;  $sp-md: 8px;
+$sp-lg: 12px;  $sp-xl: 16px; $sp-2xl: 20px; $sp-3xl: 24px;
+
+$r-xs: 4px; $r-sm: 6px; $r-md: 8px; $r-4xl: 12px; $r-full: 9999px;
+
+// ---- Fonts --------------------------------------------------------
+$font-body:    'Geist', system-ui, sans-serif;
+$font-display: 'Spectral', Georgia, serif;
+$font-code:    'JetBrains Mono', ui-monospace, monospace;
+
+// ---- Reset --------------------------------------------------------
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: $font-body;
+  background: #e9e6e1;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.ico { width: 16px; height: 16px; flex: none; display: block; }
+
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+// ===================================================================
+// Panel shell — 480 × 800
+// ===================================================================
+.panel {
+  width: 480px;
+  height: 800px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  background: $bg-primary;
+  border: 1px solid $border-secondary;
+  border-radius: $r-4xl;
+  overflow: hidden;
+  box-shadow: 0 12px 32px -12px rgba(32, 31, 30, 0.18);
+}
+
+// ===================================================================
+// Header (fixed)
+// ===================================================================
+.phead {
+  position: relative;
+  flex: none;
+  padding: $sp-2xl $sp-2xl 0;
+  border-bottom: 1px solid $border-secondary;
+
+  &__main {
+    display: flex;
+    align-items: flex-start;
+    gap: $sp-lg;
+    padding-right: 32px;            // clearance for close button
+  }
+
+  // warning featured icon — 40, radius 10
+  &__badge {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: $warn-25;
+    color: $warn-600;
+    .ico { width: 20px; height: 20px; }
+  }
+
+  &__text {
+    padding-top: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: $sp-sm;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    color: $text-primary;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $sp-sm;
+    font-size: 13px;
+    line-height: 20px;
+    color: $text-tertiary;
+  }
+
+  &__sep { color: $border-primary; }
+
+  &__close {
+    position: absolute;
+    top: $sp-xl;
+    right: $sp-xl;
+  }
+}
+
+// severity chip (Medium)
+.sev {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-sm;
+  font-weight: 500;
+  color: $warn-700;
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $r-full;
+    background: $warn-500;
+    box-shadow: 0 0 0 3px rgba(240, 148, 55, 0.16);
+  }
+}
+
+// ---- Icon button --------------------------------------------------
+.iconbtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $r-md;
+  color: $text-tertiary;
+  transition: background .12s ease, color .12s ease;
+
+  &:hover { background: $bg-secondary; color: $text-primary; }
+}
+
+// ---- Pill tabs ----------------------------------------------------
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: $sp-md;
+  margin-top: $sp-xl;
+}
+
+.tab {
+  padding: $sp-sm $sp-lg;
+  border-radius: $r-md;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $text-tertiary;
+  transition: background .12s ease, color .12s ease;
+  transform: translateY(1px);         // sit on the header baseline
+  position: relative;
+
+  &:hover { background: $bg-secondary; color: $text-secondary; }
+
+  &--active {
+    background: $bg-primary;
+    border-color: $border-secondary;
+    color: $text-primary;
+    // knit the active pill into the divider line
+    box-shadow: 0 1px 0 0 $bg-primary;
+  }
+}
+
+// ===================================================================
+// Scroll body
+// ===================================================================
+.pbody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  background: $bg-secondary;
+  padding: $sp-xl $sp-2xl $sp-2xl;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-xl;
+
+  &::-webkit-scrollbar { width: 10px; }
+  &::-webkit-scrollbar-thumb {
+    background: $border-primary;
+    border: 3px solid $bg-secondary;
+    border-radius: $r-full;
+  }
+}
+
+// ---- Card ---------------------------------------------------------
+.card {
+  background: $bg-primary;
+  border: 1px solid $border-secondary;
+  border-radius: $r-4xl;
+  padding: $sp-3xl;
+
+  &__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $text-tertiary;
+    margin-bottom: $sp-xl;
+  }
+}
+
+// shared small field label
+.field-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-tertiary;
+  margin-bottom: $sp-md;
+}
+
+// ===================================================================
+// Detection — connected flow rail
+// ===================================================================
+.flow { display: flex; flex-direction: column; }
+
+.flow-node {
+  display: flex;
+  gap: $sp-lg;
+
+  &__rail {
+    width: 12px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__dot {
+    width: 11px;
+    height: 11px;
+    flex: none;
+    margin-top: 3px;
+    border-radius: $r-full;
+    background: $bg-primary;
+    border: 2px solid $brand-200;
+    box-shadow: 0 0 0 3px $bg-secondary;
+    z-index: 1;
+
+    &--warn {
+      border-color: $warn-500;
+      background: $warn-500;
+      box-shadow: 0 0 0 3px $warn-100;
+    }
+  }
+
+  &__line {
+    flex: 1 0 0;
+    width: 2px;
+    margin: $sp-xs 0;
+    background: $border-secondary;
+    &--warn { background: $warn-200; }
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-bottom: $sp-2xl;
+  }
+
+  &--terminal &__body { padding-bottom: 0; }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $text-tertiary;
+    margin-bottom: $sp-xs;
+  }
+
+  &__value {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+    color: $text-primary;
+  }
+}
+
+// Enforcement terminus — the Von Restorff element
+.enforce {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-sm;
+  margin-top: $sp-xxs;
+  padding: $sp-md $sp-lg;
+  background: $warn-25;
+  border: 1px solid $warn-200;
+  border-radius: $r-md;
+  color: $warn-600;
+
+  &__ico { width: 15px; height: 15px; }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    color: $warn-700;
+  }
+}
+
+// ===================================================================
+// Evidence — code + deep links
+// ===================================================================
+.code {
+  font-family: $font-code;
+  font-size: 12px;
+  line-height: 20px;
+  color: $text-secondary;
+  background: $bg-secondary;
+  border: 1px solid $border-secondary;
+  border-radius: $r-md;
+  padding: $sp-lg $sp-xl;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  &__risk { color: $risk-error; font-weight: 500; }
+  &__str  { color: $text-primary; }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: $sp-2xl;
+  margin-top: $sp-xl;
+  padding-top: $sp-xl;
+  border-top: 1px solid $border-secondary;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-xs;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  color: $text-secondary;
+  text-decoration: none;
+  transition: color .12s ease;
+
+  &__ico { width: 14px; height: 14px; color: $text-tertiary; transition: color .12s ease; }
+
+  &:hover { color: $text-primary; .link__ico { color: $text-primary; } }
+}
+
+// ===================================================================
+// Triage — field selects
+// ===================================================================
+.fields { display: flex; flex-direction: column; gap: $sp-xl; }
+.ffield { display: flex; flex-direction: column; }
+
+.select {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sp-md;
+  padding: 0 $sp-lg;
+  background: $bg-primary;
+  border: 1px solid $border-secondary;
+  border-radius: $r-md;
+  transition: border-color .12s ease, box-shadow .12s ease;
+
+  &:hover  { border-color: $border-primary; }
+  &:focus-visible {
+    outline: none;
+    border-color: $brand-200;
+    box-shadow: 0 0 0 3px rgba(17, 45, 6, 0.08);
+  }
+
+  &__val {
+    display: inline-flex;
+    align-items: center;
+    gap: $sp-md;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $text-primary;
+
+    &--placeholder { color: $text-placeholder; font-weight: 400; }
+  }
+
+  &__chev { width: 16px; height: 16px; color: $text-tertiary; }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: $r-full;
+  &--open { background: $warn-500; box-shadow: 0 0 0 3px rgba(240, 148, 55, 0.14); }
+}
+
+// dashed add-avatar for the empty assignee
+.avatar-add {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $r-full;
+  border: 1px dashed $border-primary;
+  color: $text-placeholder;
+  .ico { width: 12px; height: 12px; }
+}
+
+// ===================================================================
+// Footer (fixed) — the decision
+// ===================================================================
+.pfoot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sp-lg;
+  padding: $sp-lg $sp-2xl;
+  background: $bg-primary;
+  border-top: 1px solid $border-secondary;
+
+  &__note {
+    display: inline-flex;
+    align-items: center;
+    gap: $sp-sm;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: $warn-700;
+    .ico { width: 14px; height: 14px; color: $warn-600; }
+  }
+
+  &__actions { display: flex; align-items: center; gap: $sp-md; }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-sm;
+  height: 36px;
+  padding: 0 $sp-xl;
+  border-radius: $r-md;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  transition: background .12s ease, border-color .12s ease;
+
+  .ico { width: 16px; height: 16px; }
+
+  &--secondary {
+    background: $bg-primary;
+    border: 1px solid $border-secondary;
+    color: $text-secondary;
+    &:hover { background: $bg-secondary; }
+  }
+
+  &--primary {
+    background: $brand-500;
+    color: $text-white;
+    &:hover { background: $brand-400; }
+  }
+}

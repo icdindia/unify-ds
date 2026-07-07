@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approve high-risk tools — Governance alert · UnifyApps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Spectral:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== Inline icon sprite (stroke = currentColor) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18M6 6l12 12"/>
+  </symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 17 17 7M8 7h9v9"/>
+  </symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+  </symbol>
+  <symbol id="i-chevron-d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m6 9 6 6 6-6"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5v14M5 12h14"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 6 9 17l-5-5"/>
+  </symbol>
+</svg>
+
+<!-- ============================================================= -->
+<!-- Frame: Governance alert side-panel — 480 x 800               -->
+<!-- ============================================================= -->
+<div class="panel">
+
+  <!-- ---- Header (fixed) ---- -->
+  <header class="phead">
+    <div class="phead__main">
+      <span class="phead__badge"><svg class="ico"><use href="#i-alert"/></svg></span>
+      <div class="phead__text">
+        <h1 class="phead__title">Approve high-risk tools</h1>
+        <div class="phead__meta">
+          <span class="sev"><span class="sev__dot"></span>Medium</span>
+          <span class="phead__sep">·</span>
+          <span>Tool &amp; action</span>
+          <span class="phead__sep">·</span>
+          <span>3 hr ago</span>
+        </div>
+      </div>
+    </div>
+    <button class="iconbtn phead__close" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+
+    <!-- Pill tabs -->
+    <nav class="tabs">
+      <button class="tab tab--active">Details</button>
+      <button class="tab">Timeline</button>
+    </nav>
+  </header>
+
+  <!-- ---- Scroll body ---- -->
+  <div class="pbody">
+
+    <!-- Detection -->
+    <section class="card">
+      <div class="card__eyebrow">Detection</div>
+
+      <div class="flow">
+        <div class="flow-node">
+          <div class="flow-node__rail"><span class="flow-node__dot"></span><span class="flow-node__line"></span></div>
+          <div class="flow-node__body">
+            <div class="flow-node__label">Agent</div>
+            <div class="flow-node__value">Sales copilot</div>
+          </div>
+        </div>
+
+        <div class="flow-node">
+          <div class="flow-node__rail"><span class="flow-node__dot"></span><span class="flow-node__line"></span></div>
+          <div class="flow-node__body">
+            <div class="flow-node__label">Policy</div>
+            <div class="flow-node__value">External message approval</div>
+          </div>
+        </div>
+
+        <div class="flow-node">
+          <div class="flow-node__rail"><span class="flow-node__dot"></span><span class="flow-node__line flow-node__line--warn"></span></div>
+          <div class="flow-node__body">
+            <div class="flow-node__label">Control</div>
+            <div class="flow-node__value">Approve high-risk tools</div>
+          </div>
+        </div>
+
+        <div class="flow-node flow-node--terminal">
+          <div class="flow-node__rail"><span class="flow-node__dot flow-node__dot--warn"></span></div>
+          <div class="flow-node__body">
+            <div class="flow-node__label">Enforcement</div>
+            <div class="enforce">
+              <svg class="ico enforce__ico"><use href="#i-lock"/></svg>
+              <span class="enforce__text">Require approval</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Evidence -->
+    <section class="card">
+      <div class="card__eyebrow">Evidence</div>
+
+      <div class="field-label">Tool call</div>
+      <pre class="code">salesforce.bulkUpdate(<br>&nbsp;&nbsp;records=<span class="code__risk">1,204</span>,<br>&nbsp;&nbsp;field=<span class="code__str">"stage"</span> &rarr; <span class="code__str">"Closed Won"</span><br>)</pre>
+
+      <div class="links">
+        <a class="link" href="#">View trace<svg class="ico link__ico"><use href="#i-arrow-ur"/></svg></a>
+        <a class="link" href="#">View conversation<svg class="ico link__ico"><use href="#i-arrow-ur"/></svg></a>
+      </div>
+    </section>
+
+    <!-- Triage -->
+    <section class="card">
+      <div class="card__eyebrow">Triage</div>
+
+      <div class="fields">
+        <div class="ffield">
+          <div class="field-label">Status</div>
+          <button class="select">
+            <span class="select__val"><span class="dot dot--open"></span>Open</span>
+            <svg class="ico select__chev"><use href="#i-chevron-d"/></svg>
+          </button>
+        </div>
+
+        <div class="ffield">
+          <div class="field-label">Assignee</div>
+          <button class="select">
+            <span class="select__val select__val--placeholder">
+              <span class="avatar-add"><svg class="ico"><use href="#i-plus"/></svg></span>Assign
+            </span>
+            <svg class="ico select__chev"><use href="#i-chevron-d"/></svg>
+          </button>
+        </div>
+
+        <div class="ffield">
+          <div class="field-label">Resolution</div>
+          <button class="select">
+            <span class="select__val">Unconfirmed</span>
+            <svg class="ico select__chev"><use href="#i-chevron-d"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ---- Footer (fixed) — the decision ---- -->
+  <footer class="pfoot">
+    <div class="pfoot__note">
+      <svg class="ico"><use href="#i-lock"/></svg>Awaiting your decision
+    </div>
+    <div class="pfoot__actions">
+      <button class="btn btn--secondary">Reject</button>
+      <button class="btn btn--primary"><svg class="ico"><use href="#i-check"/></svg>Approve request</button>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
